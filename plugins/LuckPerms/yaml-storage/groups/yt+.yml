@@ -1,0 +1,20 @@
+name: yt+
+permissions:
+- kit.sponsor
+- funnyguilds.vip.items
+- essentials.repair
+- essentials.repair.all
+- essentials.back
+- essentials.back.ondeath
+- essentials.hat
+- essentials.feed
+- essentials.ignore
+- essentials.sethome.multiple
+- essentials.sethome.multiple.sponsor
+- endercontainers.open.1
+- endercontainers.open.2
+- endercontainers.open.3
+- endercontainers.open.4
+- weight.201
+parents:
+- default

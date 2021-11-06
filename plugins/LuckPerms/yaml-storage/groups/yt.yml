@@ -1,0 +1,18 @@
+name: yt
+permissions:
+- kit.svip
+- funnyguilds.vip.items
+- essentials.repair
+- essentials.back
+- essentials.back.ondeath
+- essentials.hat
+- essentials.feed
+- essentials.ignore
+- essentials.sethome.multiple
+- essentials.sethome.multiple.svip
+- endercontainers.open.1
+- endercontainers.open.2
+- endercontainers.open.3
+- weight.151
+parents:
+- default

@@ -1,0 +1,13 @@
+services:
+  #Sekcja z usluga przykladowo vip
+  #Aby dodac nowa usluge skopiuj ta i wklej w nowej linijce na koncu ostatniej sekcji
+  #Nazwa uslugi, NIE MOZE ZAWIERAC SPACJI
+  vip:
+    #Komendy ktore maja sie wykonac po aktywacji tej uslugi
+    commands:
+      - "pex user %player% group set VIP"
+    #Wiadomosci ktore maja zostac wyslane do wszystkich graczy po aktywacji tej uslugi
+    messages:
+      - "&8&m--------------------------------------------"
+      - "&8>> &eGracz &7%player% &ezakupil range &7VIP&7!"
+      - "&8&m--------------------------------------------"

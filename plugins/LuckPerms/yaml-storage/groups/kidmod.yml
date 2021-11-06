@@ -1,0 +1,26 @@
+name: kidmod
+permissions:
+- essentials.tpo
+- essentials.tempban.offline
+- essentials.ban.offline
+- essentials.tphere
+- essentials.ban
+- essentials.tempban
+- essentials.unban
+- essentials.afk
+- essentials.fly.safelogin
+- essentials.vanish
+- essentials.tp
+- essentials.fly
+- essentials.joinfullserver
+- essentials.chat.url
+- essentials.kick
+- essentials.mute
+- essentials.helpop.receive
+- essentials.ban.exempt
+- essentials.kick.exempt
+- essentials.mute.exempt
+- essentials.tempban.exempt
+- weight.700
+parents:
+- default

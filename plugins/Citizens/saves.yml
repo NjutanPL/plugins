@@ -1,0 +1,144 @@
+# Citizens NPC Storage
+
+
+last-created-npc-id: 4
+npc:
+  '2':
+    metadata:
+      cached-skin-uuid-name: rtp
+      cached-skin-uuid: cf416ebd-925e-4fb4-b415-09a0d18e6fb3
+      collidable: true
+    name: §0
+    uuid: 62e0cd1f-e5bb-43c6-a23b-52f107ec26c9
+    traits:
+      skintrait:
+        fetchDefaultSkin: true
+        signature: kz21E8s7e2QmoPXxKeDSE+pU2gMETZoGzpDJh6M+BDB0tFaGF9UIzk1/MaL05J8J8VEKaiIP4G2FTtRm1Z4e+1UU2DC+LXOIX50Gk230yp3rB68eAVKdmocn9AkueclGhZpjs1YpBoPmIfS8Gc94V7mlrzUFq8IyVodcDdoajDMVbtuCDMJMjbhDSrUtfbf8jTnpI2bCFB4lDyRFbCeOGQ7QWxdNtXQRsqF3wr/IRKS/5yLYORS5nNhJKdqo4KfL3rYBnB/QtSkndb10eXJpBRMmegDjBPbq37+MWBNPxKffEPC2Zj33QlUw1YNFZC1/WNve27ctn9ETrU3yLfKaKO+6bgiXxhhlZ1UluMUtuzjlxhOlTZ+LOF1vgWAK76C4e4TjwfiIOLvvDrmHewnCz7bwJ2XKEADhO7dAkErqsRRILeyR5bGFJ90TTG/0RW0lL50nbT9N2SWEA8s/e5+trNbuVUC5TqIUCPbO5td8OZqH0uyaaoXJmJ1S/QzKZA7tt0u1t0audy5Y5cIexDlvdx+u2jcQUi8I5P2CyOD9z8X0Rv+CCs0NOERGkNJFhY86jT3XicIznhT/EDo6qRq2tx7sVPRO9Y1yhoaQ9B5KDkBwy5H9oGZyj2BKRDxNL28yJcrzC1RWnOpABirsBHv4kk5T3wlYWJyQyjI1X9mWkfs=
+        skinName: rtp
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTYyMzA3OTMyMDA5NCwKICAicHJvZmlsZUlkIiA6ICJjZjQxNmViZDkyNWU0ZmI0YjQxNTA5YTBkMThlNmZiMyIsCiAgInByb2ZpbGVOYW1lIiA6ICJSVFAiLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzhlMDQwMGVhMzMxNDgwZDhkYTA1MTBiNjQyYmE3MzExOWVhZTg4OTFmOGEwMTlkNjVkYjJjYWQyNDkyZGM2NSIKICAgIH0KICB9Cn0=
+        updateSkins: false
+      commandtrait:
+        cost: -1.0
+        executionMode: LINEAR
+        commands:
+          '0':
+            command: rtp
+            hand: RIGHT
+            player: true
+            op: false
+            cooldown: 0
+            globalcooldown: 0
+            n: -1
+            delay: 0
+      spawned: true
+      type: PLAYER
+      location:
+        bodyYaw: 18.231598
+        world: megadrop_world
+        x: '2.6252'
+        y: '69.5'
+        z: '-7.6034'
+        yaw: '18.2316'
+        pitch: '12.325'
+      inventory: {}
+      scoreboardtrait: {}
+      owner:
+        owner: Rap3erka
+        uuid: 902e97a0-ae88-460c-bc3f-4116f0264a6b
+    traitnames: type,inventory,equipment,spawned,owner,skintrait,mounttrait,location,scoreboardtrait,commandtrait
+    navigator:
+      speedmodifier: '1.0'
+      avoidwater: false
+      usedefaultstuckaction: true
+  '1':
+    metadata:
+      cached-skin-uuid-name: ster
+      cached-skin-uuid: 764af92e-2244-4835-b883-5e59d4cc39cc
+    name: §0
+    uuid: c97f612f-377d-4153-85fc-0540b9a719ae
+    traits:
+      skintrait:
+        fetchDefaultSkin: true
+        signature: uN6MXILrvCYt8RMkmXJMDVYUErbEZiFC1lrHpaKXN38KXthHGZDBTXLN+891GxXdK1PcMtnMAtgEGgogVajrkCC1YVpFDPITC5NHSHQirmKxOIqQ/S0i5CORxYdamo2BrFDQYJXAu7bsZaw/Ti44SNOuD/IRW7FYL4HXuW1jZ4CR302a+8bIvuCNTutqAxsjP8s0SlWuS8ty2woxueQXHgxF76+RQ6gsrAFYtHMnTaAlSLu15aIRLf06Q8DgqXgDT75laC/f2ZZllaVnKjZa2YKTMpI56ZYoF1wd7nAVFHlaa8FwOQFhpSRGBt+VfpNVwEp6pr52Ey9vT7SHhRa2SoKOyUoMn/XHV2PJdRKAWutChf7npG6J4VhqE5i6VPfJRoJxteVsiED4J4RHmTB5ZVAWa1ludFqmKebpuh2PgSXg+YCqEXQJEJRz/sP7nsJ1mmxCMLtwR9eswUZirionHPm0E3UESKlCQsIXiEtlhaEgKUuh3++6fb/SE7NkzSdHr7yBpbAS0EzAzfLGsQ4ONFKF9XzoEuM2FSebKnRsHBwIR7Yp17MjMeJlQo35giZqjr6MluQYD7xLycD/nSiHGL+xfUlqP2Nc2VwCaVW6aCW6dxcZcXIWlViKvQzT62X8hpFpfgxAJRbTlfNJXXY9mCsaM31EYRvWPFcg7nZ7TC8=
+        skinName: ster
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTYyMzA3OTE5NjM1MCwKICAicHJvZmlsZUlkIiA6ICI3NjRhZjkyZTIyNDQ0ODM1Yjg4MzVlNTlkNGNjMzljYyIsCiAgInByb2ZpbGVOYW1lIiA6ICJzdGVyIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2E2MTdiMmU4MzViMWQ4YzZhYTU0YTE4YzZhM2YwZGYxZTVmOTE3NzJhMTU0ZmIxNmU2ZDg4NGJiNWYxZWQ0MTkiCiAgICB9CiAgfQp9
+        updateSkins: false
+      commandtrait:
+        cost: -1.0
+        executionMode: LINEAR
+        commands:
+          '0':
+            command: pomoc
+            hand: RIGHT
+            player: true
+            op: false
+            cooldown: 0
+            globalcooldown: 0
+            n: -1
+            delay: 0
+      spawned: true
+      type: PLAYER
+      location:
+        bodyYaw: 201.57207
+        world: megadrop_world
+        x: '-1.5583'
+        y: '69.5'
+        z: '8.61'
+        yaw: '201.5721'
+        pitch: '4.6055'
+      inventory: {}
+      scoreboardtrait: {}
+      owner:
+        owner: Rap3erka
+        uuid: 902e97a0-ae88-460c-bc3f-4116f0264a6b
+    traitnames: type,inventory,equipment,owner,spawned,skintrait,mounttrait,location,scoreboardtrait,commandtrait
+    navigator:
+      speedmodifier: '1.0'
+      avoidwater: false
+      usedefaultstuckaction: true
+  '0':
+    metadata:
+      cached-skin-uuid-name: jozek
+      cached-skin-uuid: d5640967-554b-46b2-9d24-835df613600a
+    name: §0
+    uuid: b23fb099-7fc1-4d5a-8777-9d4d49898c58
+    traits:
+      skintrait:
+        fetchDefaultSkin: true
+        signature: tGCHa/SfZNILUzZg3eIri48xkf0HlMKmgQZ7FOeEWj6q+1GWkJ4jio9AeQdhoarr+qrFT+wyZWI1Ti6yIVtldK14mfR08ycy8ckGlhD+C6cfkYlu+wKlbdsufp3uaYLBiaQZHvTf3anh2TwwGw/WS7akcqXspWpDs3NxFUBH+cGAmZs1N5JcHEaLAsrp840OceXQg8BM7+oUjhS/WQATE883X9HU+LIn/dML/n3DeFwD9so3Ms/J5halPGo11qIR0pkfxTGfe4d/NLFeGny5YEsqN5ApTnmkO9SxpqlTbPm3bBnF9n+OtvrsEGulx1c4SZGoOMp91SvBRcfJbqCGwKl6mEV93uopvUDhFeagiPU27cotzAqoXRFyrtA25iON1ALeaVRuRIlezrD6q9YtHbCPOSuvj7jmfjGc651jx1uyyBvWh/qf7oS5kwceEsc7/0quRWzFTXZ2DpwrPtIlYdTUQgGOIxwKPXZNTWvVxWsWNNW+ZPRqeADdfiv0jHlON7ZSKqa7FCWzjgFlu68StB78JlVjhIMEAhwW0G3GxFQ/jW3ISDBLwcj9j/JOCXjj6V9Q65hBWYMtAgrQMYw9QfJ9In2hHQKimKFAeA5990J7EXgtVP9XLuiBtVeb8ncipDLuTgX7eSGTGkwxUJE4KEHT4IqzwxgwK+qoLkxMnnk=
+        skinName: jozek
+        textureRaw: ewogICJ0aW1lc3RhbXAiIDogMTYyMzA3OTEzODk1OCwKICAicHJvZmlsZUlkIiA6ICJkNTY0MDk2NzU1NGI0NmIyOWQyNDgzNWRmNjEzNjAwYSIsCiAgInByb2ZpbGVOYW1lIiA6ICJKb1plSyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS84ZjNmNjlmYzdjOTZjNDIzZGM3YWFhYzIxODJkNWU0NmEzZjYxNjhmMmQxYWMzOGE2YzE1YTdjMzcxOGQxM2Y1IgogICAgfQogIH0KfQ==
+        updateSkins: false
+      commandtrait:
+        cost: -1.0
+        executionMode: LINEAR
+        commands:
+          '0':
+            command: help
+            hand: RIGHT
+            player: true
+            op: false
+            cooldown: 0
+            globalcooldown: 0
+            n: -1
+            delay: 0
+      spawned: true
+      type: PLAYER
+      location:
+        bodyYaw: 164.67041
+        world: megadrop_world
+        x: '2.6682'
+        y: '69.5'
+        z: '8.6021'
+        yaw: '164.6704'
+        pitch: '-1.127'
+      inventory: {}
+      scoreboardtrait: {}
+      owner:
+        owner: Rap3erka
+        uuid: 902e97a0-ae88-460c-bc3f-4116f0264a6b
+    traitnames: type,inventory,equipment,spawned,owner,skintrait,mounttrait,location,scoreboardtrait,commandtrait
+    navigator:
+      speedmodifier: '1.0'
+      avoidwater: false
+      usedefaultstuckaction: true

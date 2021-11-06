@@ -1,0 +1,31 @@
+no-permission: "&8>> &cNie masz dostepu do tej komendy! &7(%permission%)"
+only-player: "&8>> &cTa komende moze wykonac tylko gracz!"
+offline-player: "&8>> &cPodany gracz jest offline!"
+check-message:
+  - ""
+  - "&eJestes sprawdzany przez &7%admin%"
+  - "&cLOGOUT = PERM!"
+  - "&2TS3: &6ts.xyz.pl"
+  - ""
+check-message-admin:
+  - "&8>> &aZaczales sprawdzac gracza &6%player%&a!"
+check-broadcast:
+  - ""
+  - "&e&lSPRAWDZANIE &8>> &6Gracz &7%player% &6jest sprawdzany przez &7%admin%"
+  - ""
+purge-broadcast:
+  - ""
+  - "&e&lSPRAWDZANIE &8>> &7%admin% &6zakonczyl sprawdzac gracza &7%player%"
+  - ""
+check-correct-usage:
+  - "&8>> &6/sprawdz &7<nick> &8- &2Sprawdzanie danego gracza"
+  - "&8>> &6/sprawdz setspawn &8- &2Ustawienie lokalizacji do sprawdzania"
+  - "&8>> &6/sprawdz czysty &7<nick> &8- &2Zakonczenie sprawdzania danego gracza"
+  - "&8>> &6/sprawdz ukaraj &7<nick> &8- &2Ukaranie danego gracza za cheaty lub brak wspolpracy"
+set-location: "&aUstawiles lokalizacje sprawdzania!"
+player-not-check: "&8>> &cPodany gracz nie jest sprawdzany!"
+not-check: "&8>> &cNie jestes sprawdzany!"
+player-is-check: "&8>> &cPodany gracz jest juz sprawdzany!"
+reload-files: "&aPrzeladowales pliki!"
+blocked-command: "&8>> &cTa komenda jest zablokowana podczas sprawdzania!"
+no-location: "&8>> &cMiejsce do sprawdzania nie jest ustawione! Zrob to komenda &7/sprawdz setspawn"

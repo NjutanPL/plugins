@@ -1,0 +1,99 @@
+Messages:
+  prefix: '&8[&a&lKIT&8] '
+  noPermissions: '&4Nie masz permisji do tego!'
+  commandCreateError: '&aMusisz uzyc: &2&o/kit create <name>'
+  commandDeleteError: '&aMusisz uzyc: &2&o/kit delete <name>'
+  commandClaimError: '&aMusisz uzyc: &2&o/kit claim <kit>'
+  commandGiveError: '&aMusisz uzyc: &2&o/kit give <kit> <player>'
+  commandEditError: '&aMusisz uzyc: &2&o/kit edit <kit>'
+  commandPreviewError: '&aMusisz uzyc: &2&o/kit preview <kit>'
+  commandOpenError: '&aMusisz uzyc: &2&o/kit open <player> <page>'
+  kitAlreadyExists: '&aKit &f&l%name% &ajuz jest w configu.'
+  kitDoesNotExists: '&aKit &f&l%name% &anie istnieje.'
+  inventoryEmpty: '&aMusisz miec co najmniej 1 przedmiot w swoim ekwipunku do stworzenia
+    Kitu.'
+  kitCreated: '&aKit &f%name% &azostal poprawnie stworzony.'
+  kitRemoved: '&aKit &f%name% &azostal poprawnie usuniety.'
+  inventoryName: '&2Kity &8(&b&lBestmine.pl&8)'
+  kitReceived: '&aKit &f&l%name% &a&lzostal odebrany'
+  configReload: '&aConfig przeladowany.'
+  seconds: s
+  minutes: m
+  hours: h
+  days: d
+  cooldownPlaceholderReady: '&aGotowe!'
+  cooldownError: '&2Musisz poczekac &f&l%time% &azeby odebrac ponownie kit.'
+  kitNoPermissions: '&2Nie masz permisji do edabrania tego kitu.'
+  kitInCooldownLore:
+  - '&bMusisz poczekac &f%time%'
+  - '&bZeby odebrac ponownie kit.'
+  commandList: '&aLista &2Kitow'
+  commandListKit: '&6%number% &e» &a%kit%'
+  commandListKitNoPermissions: '&6%number% &e» &c%kit% &c(&4&lBrak permisji)'
+  commandListKitInCooldown: '&6%number% &e» &c%kit% &7(&4&lPozostalo: &8%time%&7)'
+  commandListKitOneTime: '&6%number% &e» &c%kit% &7(&4&lZostal juz odebrany&7)'
+  noSpaceError: '&cNie masz wystarczajaco miejsca w ekwipunku do odebrania kitu!'
+  materialNameError: '&cWystapil blad w twoim configu. Material: &7&l%material% &cMasz
+    nieodpowiednia wersja &2Minecraft.'
+  oneTimeError: '&cNie mozesz odebrac tego kitu ponownie!'
+  kitOneTimeLore:
+  - '&cNie mozesz odebrac tego kitu ponownie!'
+  previewInventoryName: '&aPrzegladaj kit'
+  backItemName: '&2Powrot'
+  playerNotOnline: '&cGracz &7%player% &cnie jest aktywny.'
+  kitGive: '&a&lKit &7%kit% &a&ldany do gracza &e%player%&a!'
+  noMoneyError: '&cNie masz wystarczajacej ilosci pieniedzy do odebrania tego kitu!
+    &8(&a$&c%current_money%&7/&a$&c%required_money%&8)'
+  moneyInventoryName: '&4&lPotwierdzenie kupna kitu'
+  moneyInventoryYes: '&2&lTAK'
+  moneyInventoryNo: '&4&lNIE'
+  moneyInventoryConfirmationName: '&cJestes pewny?'
+  moneyInventoryConfirmationLore:
+  - '&a&lTo bedzie cie kosztowalo: &a$%price%'
+  kitInventoryOpen: '&a&lOtwieranie ekwipunku kitow dla &e&l%player%&a&l.'
+  errorPage: '&cNiepoprawna strona!.'
+  commandResetError: '&cYou need to use: &7/kit reset <player> <kit>'
+  kitResetCorrect: '&aKit &7%kit% &areset for &7%player%&a!'
+  kitResetFail: '&cNot possible to reset kit &7%kit% &cfor &7%player%&c!'
+Config:
+  inventorySize: 45
+  previewInventorySize: 54
+  preview_inventory_back_item_slot: 45
+  kit_preview: true
+  kit_preview_back_item: true
+  hide_kits_with_permissions: false
+  close_inventory_on_claim: false
+  drop_items_if_full_inventory: false
+  commands_before_items: false
+  kit_error_sound: liquid.lavapop;10;1
+  kit_claim_sound: liquid.lavapop;10;1
+  kit_page_sound: liquid.lavapop;10;1
+  update_notify: true
+  mysql_database:
+    enabled: false
+    host: localhost
+    port: 3306
+    username: root
+    password: root
+    database: database
+  Inventory:
+    '0':
+      id: STAINED_GLASS_PANE
+      name: ' '
+    '8':
+      id: STAINED_GLASS_PANE
+      name: ' '
+    '36':
+      id: STAINED_GLASS_PANE
+      name: ' '
+    '44':
+      id: STAINED_GLASS_PANE
+      name: ' '
+    '18':
+      id: SKULL
+      name: '&6Previous Page'
+      type: previous_page
+    '26':
+      id: SKULL
+      name: '&6Next Page'
+      type: next_page

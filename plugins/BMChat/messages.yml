@@ -1,0 +1,47 @@
+chat:
+  # Wiadomosc do gracza informujaca o tym, ze nie ma uprawnienia do danej komendy
+  no-permission: "&8>> &cNie masz dostepu do tej komendy! &7(%permission%)"
+  # Wiadomosc do gracza informujaca o poprawnym uzyciu komendy
+  correct-usage: "&8>> &cPoprawne uzycie: &7%correct-usage%"
+  # Wiadomosc do gracza informujaca o tym, ze argument przy ustawianiu spowolnienia nie jest liczba
+  no-integer: "&8>> &cPodany argument nie jest liczba!"
+  # Wiadomosc do wszystkich graczy gdy ktos wlaczy czat
+  set-on:
+    - ""
+    - "&8>> &7Czat zostal &awlaczony &7przez &a%player%&7!"
+    - ""
+  # Wiadomosc do wszystkich graczy gdy ktos wylaczy czat
+  set-off:
+    - ""
+    - "&8>> &7Czat zostal &cwylaczony &7przez &a%player%&7!"
+    - ""
+  # Wiadomosc do wszystkich graczy gdy ktos wyczysci czat
+  clear:
+    - ""
+    - "&8>> &7Czat zostal &fwyczyszczony &7przez &a%player%&7!"
+    - ""
+  # Wiadomosc do wszystkich graczy gdy ktos zmieni spowolnienie czatu
+  change-slowdown:
+    - ""
+    - "&8>> &7Spowolnienie czatu zostalo zmienione na &a%slowdown%s &7przez &2%player%&7!"
+    - ""
+  # Wiadomosc do gracza informujaca kiedy będzie mogl napisac ponownie na czacie
+  info-slowdown:
+    - ""
+    - "&8>> &7Kolejny raz bedziesz mogl napisac za &a%slowdown%&7!"
+    - ""
+  # Wiadomosc do gracza informujaca, ze czat jest wylaczony
+  info-off:
+    - ""
+    - "&8>> &cCzat aktualnie jest &4wylaczony&c!"
+    - ""
+  # Wiadomosc do gracza informujaca, że czat jest juz wlaczony
+  info-already-on:
+    - ""
+    - "&8>> &cCzat jest juz &awlaczony&c!"
+    - ""
+  # Wiadomosc do gracza informujaca, ze czat jest juz wylaczony
+  info-already-off:
+    - ""
+    - "&8>> &cCzat jest juz &4wylaczony&c!"
+    - ""

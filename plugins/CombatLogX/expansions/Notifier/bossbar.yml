@@ -1,0 +1,14 @@
+# Boss Bar Configuration for Notifier
+
+# Set this to true if the boss bar should be enabled
+# The Boss Bar is a message and health bar shown at the top of the screen
+# If your version is below 1.9 and you don't have BossBarAPI installed, set this to false
+enabled: false
+
+# These options only work in 1.9+
+bar-color: GREEN
+bar-style: SOLID
+
+# This is the message format for the boss bar
+message-timer: "&c☠&e&ki&c&lWalka&e&ki&c☠&r  &e\u00BB &f&l{time_left} &fsekund."
+message-ended: "&c☠&e&ki&c&lWalka&e&ki&c☠&r  &c\u00BB &cNie jestes juz podczas walki."

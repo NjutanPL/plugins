@@ -1,0 +1,21 @@
+name: chatmod
+permissions:
+- chat.bypass 
+- chat.slow.bypass 
+- chat.command 
+- chat.on 
+- chat.off 
+- chat.clear 
+- chat.slow
+- essentials.joinfullserver
+- essentials.chat.url
+- essentials.kick
+- essentials.mute
+- essentials.helpop.receive
+- essentials.ban.exempt
+- essentials.kick.exempt
+- essentials.mute.exempt
+- essentials.tempban.exempt
+- weight.400
+parents:
+- default

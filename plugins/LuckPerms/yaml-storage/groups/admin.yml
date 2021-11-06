@@ -1,0 +1,5 @@
+name: admin
+permissions:
+- weight.900
+parents:
+- default

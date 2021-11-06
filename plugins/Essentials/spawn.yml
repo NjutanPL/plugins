@@ -1,0 +1,8 @@
+spawns: 
+  default: 
+    world: megadrop_world
+    x: 0.5
+    y: 69.0
+    z: 0.5
+    yaw: 181.31561
+    pitch: -4.787291

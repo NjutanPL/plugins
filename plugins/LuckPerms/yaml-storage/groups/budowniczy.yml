@@ -1,0 +1,5 @@
+name: budowniczy
+permissions:
+- weight.300
+parents:
+- default

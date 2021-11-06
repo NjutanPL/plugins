@@ -1,7 +1,0 @@
-command /adminkit [<text>]:
-	trigger:
-		if arg 1 is set:
-			send "&8[&e&lTIMEHC.PL&8] &cAdminKit jest &4&lWYLACZONY! "
-		else:
-			execute console command "tb msg %player% &cADMINKIT jest wylaczony!"
-            

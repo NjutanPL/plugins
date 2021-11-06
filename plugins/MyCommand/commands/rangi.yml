@@ -1,0 +1,46 @@
+'pomocrangi':
+  command: /ranga
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&a&lNADAWANIE RANG'
+  - ''
+  - '&2/ranga nadaj (nick) (ranga) &7- &fnadaje range graczowi'
+  - '&2/ranga usun (nick) (ranga) &7-  &fzabiera range graczowi'
+  - '&2/ranga czas (nick) (ranga) (czas) &7- &fnadaje range graczowi na okreslony czas'
+  - ''
+  - '&7Przykladowe nadanie rangi na czas&7:'
+  - '&f/ranga czas Rap3erka VIP 10d'
+  - ''
+  - '&8&m--------------------------------------'
+  permission-required: false
+  permission-node: bestmine.pomocrangi
+  permission-error: "&cNie masz do tego permisji!"
+
+'nadaj':
+  command: /ranga nadaj
+  type: RUN_COMMAND
+  runcmd:
+  - /lp user $arg1 parent set $arg2
+  permission-required: false
+  permission-node: bestmine.nadawanierang
+  permission-error: "&cNie masz do tego permisji!"
+
+'zabierz':
+  command: /ranga usun
+  type: RUN_COMMAND
+  runcmd:
+  - /lp user $arg1 parent remove $arg2
+  permission-required: false
+  permission-node: bestmine.usunrange
+  permission-error: "&cNie masz do tego permisji!"
+
+'czasowa':
+  command: /ranga czas
+  type: RUN_COMMAND
+  runcmd:
+  - /lp user $arg1 parent addtemp $arg2 $arg3
+  permission-required: true
+  permission-node: bestmine.rangaczasowa
+  permission-error: "&cNie masz do tego permisji!"

@@ -1,0 +1,24 @@
+#
+# Komendy:
+#  /sprawdz - Komendy dot. sprawdzania
+#  /przyznajsie - Komenda dla gracza gdy chce sie przyznac do niedozwolonych modyfikacji
+#  /checkreload - Komenda do przeladowania plikow
+#
+# Uprawnienia:
+#  check.command - Dostep do poprawnego uzycia komendy
+#  check.player - Dostep do sprawdzania graczy
+#  check.setspawn - Dostep do ustawiania lokalizacji sprawdzania
+#  check.purge - Dostep do zakonczenia sprawdzania graczy
+#  check.punish - Dostep do ukarania danego gracza
+#  check.admit - Dostep do przyznania sie do niedozwolonych modyfikacji
+#  check.reload - Dostep do przeladowania plikow
+#
+punish-commands:
+  - "ban %player% Cheaty"
+admit-commands:
+  - "tempban %player% 3d Przyznanie sie do cheatow"
+blocked-commands:
+  - "spawn"
+  - "tpa"
+  - "tpaaccept"
+  - "g home"

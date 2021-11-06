@@ -1,0 +1,34 @@
+####################################################################################
+# List of available effects:                                                       #
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html #
+####################################################################################
+
+gui-name: "&a&lEFEKTY"
+no-money-message: "&cNie masz wystarczajaco &2blokow emeraldow&c."
+successful-buy-message: "&8[&f&lE&d&lF&6&lE&e&lK&a&lT&2&lY&8] &aZakupiles efekt."
+effects:
+ sila1: 
+  icon: "267 1 name:&6&lSila_I lore:&f_Cena_&a&l32_blokow_emeraldow&nl&f_Czas_&a&l2,5min"
+  price: 32
+  item: 133
+  effect: "INCREASE_DAMAGE:150:1"
+ sila2: 
+  icon: "276 1 name:&6&lSila_II lore:&f_Cena_&a&l64_blokow_emeraldow&nl&f_Czas_&a&l2,5min"
+  price: 64
+  item: 133
+  effect: "INCREASE_DAMAGE:150:2"
+ szybkosc: 
+  icon: "353 1 name:&6&lSzybkosc_II lore:&f_Cena_&a&l10_blokow_emeraldow&nl&f_Czas_&a&l5min"
+  price: 10
+  item: 133
+  effect: "SPEED:300:2"
+ kopanie1: 
+  icon: "274 1 name:&6&lSzybkie_Kopanie_I lore:&f_Cena_&a&l2_bloki_emeraldow&nl&f_Czas_&a&l5min"
+  price: 2
+  item: 133
+  effect: "FAST_DIGGING:300:1"
+ kopanie2: 
+  icon: "257 1 name:&6&lSzybkie_Kopanie_II lore:&f_Cena_&a&l5_bloki_emeraldow&nl&f_Czas_&a&l5min"
+  price: 5
+  item: 133
+  effect: "FAST_DIGGING:300:2"

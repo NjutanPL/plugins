@@ -1,0 +1,79 @@
+# # # # # # # # # # # # # # # # # # # # # #
+#   EnderContainers english locale        #
+#   Version: 2.2.1                        #
+#   An enderchests plugin by Utarwyn      #
+# # # # # # # # # # # # # # # # # # # # # #
+
+##                 ##
+#  Commands locale  #
+##                 ##
+commands:
+
+  backups:
+    created: '&aBackup &b%backup%&a zostal stworzony.'
+    creation_starting: 'Tworze backup w tle...'
+    exists: 'Backup &6%backup% &cjuz istnieje. Wybierz inna nazwe'
+    info: '&6%command% &7by otrzymac wiecej informacji o tej komendzie.'
+    loaded: '&aSuper! Backup &b%backup%&a zostal wczytany'
+    loading_starting: 'Wczytywanie backupa...'
+    removed: '&aBackup &b%backup%&a zostal poprawnie usuniety.'
+    unknown: 'Backup &6%backup%&c nie zostal znaleziony'
+    zero: '&cNie znaleziono backupow. Stworz pierwszy juz teraz!'
+
+    label_name: 'Nazwa'
+    label_date: 'Stworzony'
+    label_by: 'Przez'
+    label_loadcmd: '&8By wczytac ten backup'
+    label_rmcmd: '&8By usunac ten backup'
+
+  config_reloaded: 'Configuration reloaded!'
+  no_update: 'Nie znaleziono aktualizacji!'
+
+
+##              ##
+#  Menus locale  #
+##              ##
+menus:
+
+  main_title: '&fEnderchest: &3%player%'
+  chest_title: 'Enderchest %num%'
+  pane_title: 'Enderchest %num% %counter%'
+
+  chest_empty: '&2Ten enderchest jest pusty!'
+  chest_full: '&cMasz pelny ekwipunek'
+  chest_locked: '&8&o>> Ten enderchest jest zablokowany'
+
+  previous_page: '&c≪ Cofnij'
+  next_page: '&cNastepny ≫'
+
+
+##               ##
+#  Errors locale  #
+##               ##
+errors:
+
+  noperm_open_chest: 'Nie mozesz otworzyc tego enderchesta'
+  noperm_console: 'Musisz byc graczem by tego uzyc'
+  noperm_player: 'Nie posiadasz permisji lub masz zbyt niska range'
+  plugin_world_disabled: 'Ten plugin jest wylaczony w tym swiecie'
+  cmd_invalid_parameter: 'Parametr &6%param% &cjest niepoprawny'
+  cmd_wrong_argument_count: 'Podales zbyt malo argumentow. &6/ecp help &cby sprawdzic pomoc!'
+
+
+##                     ##
+#  Dependencies locale  #
+##                     ##
+dependencies:
+
+  # Factions plugin
+  access_denied_factions: 'Nie mozesz uzywac enderchesta na terenie %faction%'
+  # PlotSquared Plugin
+  access_denied_plotsq: 'Nie mozesz uzywac tutaj enderchesta'
+
+
+##                      ##
+#  Miscellaneous locale  #
+##                      ##
+miscellaneous:
+
+  chest_nametag: '&6&l%enderchests%/%maxenderchests%&r&e enderchest%plural% dostepny'

@@ -1,0 +1,13 @@
+help:
+  location: megadrop_world, 2.436, 72.500, 8.508
+  lines:
+  - '&8[ &a&lDOSTEPNE KOMENDY &8]'
+pomoc:
+  location: megadrop_world, -1.575, 72.500, 8.432
+  lines:
+  - '&8[ &a&lPOMOC &8]'
+rtp:
+  location: megadrop_world, 2.533, 72.500, -7.622
+  lines:
+  - '&8[ &a&lRTP &8]'
+  - '&7Przenies sie w losowe miejsce!'

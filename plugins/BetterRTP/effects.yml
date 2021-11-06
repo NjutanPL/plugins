@@ -1,0 +1,45 @@
+Sounds:
+  Enabled: true
+  ProtocolLibSound: false
+  Delay: entity_tnt_primed
+  Success: entity_generic_explode
+Titles:
+  Enabled: true
+  NoDelay:
+    Title: '&2Teleportacja...'
+    Subtitle: '&8zaczekaj'
+    SendMessage: true
+  Teleport:
+    Title: '&2Teleportowano!'
+    Subtitle: '&fx=%x% y=%y% z=%z% in %attempts% attempts'
+    SendMessage: true
+  Delay:
+    Title: ''
+    Subtitle: '&fTeleportacja za %time% sekund...'
+    SendMessage: true
+  Cancelled:
+    Title: '&eRuszyles sie...'
+    Subtitle: '&cRtp anulowane!'
+    SendMessage: true
+  Loading:
+    Title: ''
+    Subtitle: '&7ladowanie chunkow... zaczekaj'
+    SendMessage: true
+  Failed:
+    Title: ''
+    Subtitle: '&cBlad! Brak bezpiecznych lokacji'
+    SendMessage: true
+Particles:
+  Enabled: true
+  Type:
+  - EXPLOSION_NORMAL
+  - CRIT
+  Shape: EXPLODE
+Invincible:
+  Enabled: true
+  Seconds: 5
+Potions:
+  Enabled: true
+  Types:
+  - Blindness:60:1
+  - Invisibility:60:1

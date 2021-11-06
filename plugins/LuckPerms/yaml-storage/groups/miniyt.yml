@@ -1,0 +1,15 @@
+name: miniyt
+permissions:
+- kit.vip
+- funnyguilds.vip.items
+- essentials.back
+- essentials.back.ondeath
+- essentials.hat
+- essentials.feed
+- essentials.ignore
+- essentials.sethome.multiple
+- essentials.sethome.multiple.vip
+- endercontainers.open.1
+- weight.101
+parents:
+- default

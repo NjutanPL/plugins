@@ -1,0 +1,72 @@
+# # # # # # # # # # # # # # # # # # # # #
+#   EnderContainers configuration       #
+#   Version: 2.2.1                      #
+#   An enderchests plugin by Utarwyn    #
+# # # # # # # # # # # # # # # # # # # # #
+
+# Show additional information in console
+debug: false
+
+# The locale of the plugin
+locale: en
+
+# A list of worlds in which the plugin will be automatically disabled
+disabledWorlds:
+  - 'my_disabled_world'
+
+
+# Enderchests configuration
+enderchests:
+
+  # Max number of enderchests available
+  # Range: 1 to infinite
+  max: 27
+
+  # Number of enderchests available for all users without any permission
+  # Range: 1 to max
+  default: 1
+
+  # Show/Hide all inaccessible enderchests in the main menu.
+  onlyShowAccessible: false
+
+  # Use the vanilla enderchest as the first one. Otherwise it will be managed by EnderContainers.
+  useVanillaEnderchest: true
+
+
+# Mysql/MariaDB configuration, if needed
+mysql:
+
+  # You can enable the MySQL module here
+  enabled: false
+
+  # Configuration of your MySQL database
+  host: 'localhost'
+  port: 3306
+  user: 'root'
+  password: ''
+  database: 'endercontainers'
+
+  # Change this section if you want to connect over SSL, by default its disabled.
+  # Check our wiki on Github to know how to configure it!
+  ssl:
+    enabled: false
+
+  # You can choose a prefix for all EnderContainers tables
+  tablePrefix: 'ec_'
+
+
+# Miscellaneous configuration
+others:
+
+  # Make the text above enderchests visible?
+  blockNametag: false
+
+  # Check automatically for update?
+  updateChecker: true
+
+  # You can put this value to true if you want to use an experimental saving system.
+  # It will use less disk space but some items data may not be saved.
+  useExperimentalSavingSystem: false
+
+  # Use a global sound when a player opens/closes an enderchest
+  globalSound: true

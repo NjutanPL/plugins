@@ -1,0 +1,41 @@
+#-----------------------------------------------------------------------------------------------------------#
+#							  MyCommand Language config file (last update v5.6.9)							#
+#		   Use & as color code ,and %s for variables - COOLDOWN accept $days$hours$minutes$seconds			#
+#						BukkitDev Help page : http://dev.bukkit.org/server-mods/mycommand/					#
+#-----------------------------------------------------------------------------------------------------------#
+LANGUAGE:
+ PREFIX: "&7MyCmd&8>&r "
+ ECONOMY_COST: "&aTa komenda kosztuje %s. Nowy stan %s"
+ ECONOMY_NO_MONEY: "&cPotrzebujesz &e%s&c$ for run this command."
+ DEBUG_EXECUTE: "Executing: "
+ COMMAND_ARGS_LINE1: "&cProsze podac wszystkie/poprawne argumenty! Komenda wpisana przez ciebie "
+ COMMAND_ARGS_LINE2: "-> Komenda(s) :"
+ ITEM_NOSET: "&cNie znaleziono zadnych komend na tym przedmiocie"
+ NO_PERMISSIONS: "&cNie posiadasz permisji"
+ SIGN_REMOVED: "&cTabliczka zostala usunieta."
+ SIGN_EMPTY: "&cLinie sa puste."
+ SIGN_CREATED: "&aUtworzono tabliczke! &2Sprawdz /mycmd-signset po wiecej opcji."
+ BLOCK_REMOVED: "&aUsunieto blok!"
+ BLOCK_DELAY: "&cBedziesz mogl wejsc w interakcje z tym blokiem za %ss"
+ NPCS_DELAY: "&cMusisz poczekac %s sekund by uzyc tego ponownie"
+ NPCS_NO_COMMAND: "&cTen NPC nie ma zadnych komend do uzycia"
+ HOLOGRAM_DELAY: "&cMozesz uzyc tego hologramu za %ss"
+ INTERACTION_DELAY: "&cMusisz poczekac %s sekund by uzyc tego ponownie"
+ WARMUP1: "&aTa komenda zostnie pominieta za &e%s &asekund"
+ WARMUP2: "&aUzyles tej komendy badz ominales cooldown"
+ WARMUP3: "&cRozpoczynam. Musisz poczekac jeszcze &e%s&c sekund"
+ COOLDOWN1: "&cPoczekaj $days$hours$minutes$seconds zanim uzyjesz tego ponownie"
+ COOLDOWN2: "&cOminales cooldown dla tej komendy!"
+ RUN_AS_CONSOLE_MESSAGE: "&aAdministratorze! Sprawdz konsole serwera."
+ DENY_CONSOLE_EXECUTION: "&cNie mozesz uzyc tej komendy z poziomu konsoli"
+ CHARACTERS_NOT_ALLOWED: "&cNie mozesz uzywac takich znakow!"
+ TIME_DAYS: "dni "
+ TIME_DAY: "dzien "
+ TIME_SECONDS: "sekundy"
+ TIME_SECOND: "sekunde"
+ TIME_HOURS: "godzin "
+ TIME_HOUR: "godzina "
+ TIME_MINUTES: "minuty "
+ TIME_MINUTE: "minuta "
+ #The PLAYERDATA_ERROR_MESSAGE is used also to check when a value isn't stored at all.
+ PLAYERDATA_ERROR_MESSAGE: "NoData"

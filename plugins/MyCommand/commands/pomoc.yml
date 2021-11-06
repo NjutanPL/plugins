@@ -1,0 +1,246 @@
+'help':
+  command: /help
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&f&lDOSTEPNE KOMENDY&0'
+  - ''
+  - '&2&l/rangi &7- &fInformacje o WSZYSTKICH &2&lRANGACH'
+  - '&2&l/linki &7- &7Wszystkie linki zwiazane z serwerem.'
+  - '&2&l/komendy &7- &7Wszystkie dostepne komendy.'
+  - '&2&l/gildia &7- &7Komenda dotyczaca &2&lgildii&7.'
+  - ''
+  permission-required: false
+  permission-node: bestmine.help
+  permission-error: "&cNie masz do tego permisji!"
+
+'vip':
+  command: /vip
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &f&lRANGA VIP&0'
+  - ''
+  - '&c● &c&lRanga VIP OFERUJE:'
+  - ''
+  - '&7Dostep do &2&lzestawu dla vipow'
+  - '&7Dostep do komendy &2/back'
+  - '&7Dostep do komendy &2/hat'
+  - '&7Dostep do komendy &2/feed'
+  - '&7Dostep do komendy &2/ignore'
+  - '&7Dostep do &2dwoch &7enderchestow'
+  - '&7Dostep do &a4x &2/sethome'
+  - '&7O polowe mniejsze itemy na zalozenie gildii'
+  - ''
+  permission-required: false
+  permission-node: bestmine.vip
+  permission-error: "&cNie masz do tego permisji!"
+
+'svip':
+  command: /svip
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &6&lRANGA SVIP&0'
+  - ''
+  - '&c● &c&lRanga SVIP OFERUJE:'
+  - ''
+  - '&7Dostep do &6&lzestawu dla svipow'
+  - '&7Dostep do komendy &6/repair'
+  - '&7Dostep do komendy &6/back'
+  - '&7Dostep do komendy &6/hat'
+  - '&7Dostep do komendy &6/feed'
+  - '&7Dostep do komendy &6/ignore'
+  - '&7Dostep do &6trzech &7enderchestow'
+  - '&7Dostep do &a6x &6/sethome'
+  - '&7O polowe mniejsze itemy na zalozenie gildii'
+  - ''
+  permission-required: false
+  permission-node: bestmine.svip
+  permission-error: "&cNie masz do tego permisji!"
+
+'sponsor':
+  command: /sponsor
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &9&lRANGA SPONSOR&0'
+  - ''
+  - '&c● &c&lRanga SPONSOR OFERUJE:'
+  - ''
+  - '&7Dostep do &9&lzestawu dla sponsorow'
+  - '&7Dostep do komendy &9/repair'
+  - '&7Dostep do komendy &9/back'
+  - '&7Dostep do komendy &9/hat'
+  - '&7Dostep do komendy &9/feed'
+  - '&7Dostep do komendy &9/ignore'
+  - '&7Dostep do &9czterech &7enderchestow w tym trzech powiekszonych'
+  - '&7Dostep do &a10x &9/sethome'
+  - '&7O polowe mniejsze itemy na zalozenie gildii'
+  - '&7Dostep do komendy &9/repair all'
+  - ''
+  permission-required: false
+  permission-node: bestmine.sponsor
+  permission-error: "&cNie masz do tego permisji!"
+
+'rangi':
+  command: /rangi
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &d&lDOSTEPNE RANGI&0'
+  - ''
+  - '&f/vip &8- &7Informacja o randze &fVIP'
+  - '&f/svip &8- &7Informacja o randze &6SVIP'
+  - '&f/sponsor &8- &7Informacja o randze &9SPONSOR'
+  - '&f/miniyt &8- &7Informacja o randze &6Mini&f&lY&4&lT'
+  - '&f/yt &8- &7Informacja o randze &f&lY&4&lT'
+  - '&f/yt+ &8- &7Informacja o randze &f&lY&4&lT&e+'
+  - ''
+  permission-required: false
+  permission-node: bestmine.rangi
+  permission-error: "&cNie masz do tego permisji!"
+
+'linki':
+  command: /linki
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&f&l&nPRZYDATNE LINKI&0'
+  - ''
+  - '&a&lSklep Serwerowy &fhttps://bestmine.pl/'
+  - '&a&lFanpage Serwera &fhttps://www.facebook.com/BestMineOfficial'
+  - '&a&lKanal Youtube Serwera &fhttps://www.youtube.com/channel/UCYOLUYCuzOBy54pk6BYPViQ'
+  - '&a&lDiscord Serwera &fhttps://discord.com/invite/hMUcHa3'
+  - ''
+  permission-required: false
+  permission-node: bestmine.linki
+  permission-error: "&cNie masz do tego permisji!"
+
+'komendy':
+  command: /komendy
+  type: TEXT
+  text:
+  - '&8&m--------------------------------------'
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &6&lKOMENDY SERWEROWE&0'
+  - ''
+  - '&f/g &8- &7Komenda dotyczaca gildii'
+  - '&f/rtp &8- &7Teleport w losowe miejsce na mapie'
+  - '&f/kit &8- &7Dostepne zestawy'
+  - '&f/schowek &8- &7Twoj schowek i limity itemow'
+  - '&f/tpa &8- &7Prosba teleportacji do wybranego gracza'
+  - '&f/sethome &8- &7Ustawienie swojego domu'
+  - '&f/home &8- &7Teleportacja na swoj dom'
+  - '&f/warp &8- &7Dostepne warpy'
+  - '&f/efekty &8- &7Efekty za bloki emeraldow'
+  - '&f/drop &8- &7Drop serwerowy z kamienia'
+  - '&f/help &8- &7Komenda pomocy 1'
+  - '&f/pomoc &8- &7Komenda pomocy 2'
+  - '&f/animatedsb toggle &8- &7Wylaczanie i wlaczanie scoreboarda'
+  - ''
+  permission-required: false
+  permission-node: bestmine.komendy
+  permission-error: "&cNie masz do tego permisji!"
+
+'miniyt':
+  command: /miniyt
+  type: TEXT
+  text:
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &6&lRANGA MINIYT&0'
+  - ''
+  - '&a&l● &fWymagania:'
+  - '&f● &7Musisz posiadac &a&ominimum 100 subskrypcji'
+  - '&f● &7Musisz wrzucic &a&omin. 1 odcinek z serwera &7(przed otrzymaniem rangi)'
+  - '&c● &7Pamietaj, ze zwracamy uwage na jakosc, zawartosc i czas &7(&a&owymagamy min 2 minutowy odcinek)'
+  - '&f● &7Dobra aktywnosc na kanale (wyswietlenia +20% ilosci subow)'
+  - ''
+  - '&e&l● &fCo oferuje:'
+  - '&f● &7To co ranga &6VIP'
+  - '&f● &7Mozliwosc otrzymania &a&ovoucherow &7do losowania na odcinku'
+  - ''
+  - '&e&l● &fGdzie i jak odebrac range:'
+  - '&f● &7Po spelnieniu wymagan zglos sie na ts3 ip: &abmspeak.pl'
+  - ''
+  permission-required: false
+
+'yt':
+  command: /yt
+  type: TEXT
+  text:
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &6&lRANGA YT&0'
+  - ''
+  - '&a&l● &fWymagania:'
+  - '&f● &7Musisz posiadac &a&ominimum 500 subskrypcji'
+  - '&f● &7Musisz wrzucic &a&omin. 1 odcinek z serwera &7(przed otrzymaniem rangi)'
+  - '&c● &7Pamietaj, ze zwracamy uwage na jakosc, zawartosc i czas &7(&a&owymagamy min 2 minutowy odcinek)'
+  - '&f● &7Dobra aktywnosc na kanale (wyswietlenia +20% ilosci subow)'
+  - ''
+  - '&e&l● &fCo oferuje:'
+  - '&f● &7To co ranga &eSVIP'
+  - '&f● &7Mozliwosc otrzymania &a&ovoucherow &7do losowania na odcinku'
+  - ''
+  - '&e&l● &fGdzie i jak odebrac range:'
+  - '&f● &7Po spelnieniu wymagan zglos sie na ts3 ip: &abmspeak.pl'
+  - ''
+  permission-required: false
+
+'yt+':
+  command: /yt+
+  type: TEXT
+  text:
+  - ''
+  - '&8[ &f&lBest&6&lMine &8] &6&lRANGA YT+&0'
+  - ''
+  - '&a&l● &fWymagania:'
+  - '&f● &7Musisz posiadac &a&ominimum 1000 subskrypcji'
+  - '&f● &7Musisz wrzucic &a&omin. 1 odcinek z serwera &7(przed otrzymaniem rangi)'
+  - '&c● &7Pamietaj, ze zwracamy uwage na jakosc, zawartosc i czas &7(&a&owymagamy min 2 minutowy odcinek)'
+  - '&f● &7Dobra aktywnosc na kanale (wyswietlenia +20% ilosci subow)'
+  - ''
+  - '&e&l● &fCo oferuje:'
+  - '&f● &7To co ranga &9SPONSOR'
+  - '&f● &7Mozliwosc otrzymania &a&ovoucherow &7do losowania na odcinku'
+  - ''
+  - '&e&l● &fGdzie i jak odebrac range:'
+  - '&f● &7Po spelnieniu wymagan zglos sie na ts3 ip: &abmspeak.pl'
+  - ''
+  permission-required: false
+
+'sklep':
+  command: /sklep
+  type: runcommand
+  runcmd:
+  - /warp sklep
+  permission-required: false
+
+
+'gildie':
+  command: /g
+  type: runcommand
+  runcmd:
+  - /gildie
+  permission-required: false
+
+####################=================
+
+
+
+
+
+
+
+
+
+
+
+
+

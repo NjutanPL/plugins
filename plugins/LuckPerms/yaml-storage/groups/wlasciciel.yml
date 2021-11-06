@@ -1,0 +1,6 @@
+name: wlasciciel
+permissions:
+- '*'
+- weight.2000
+parents:
+- default

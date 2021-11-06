@@ -1,0 +1,39 @@
+{
+  "boy_farmer": {
+    "name": "&5&l» &9&lBoy Farmer &5&l«",
+    "lore": [
+      "&r",
+      "&r &7» &f&lInformacje:",
+      "&r",
+      "&r   &7Natychmiastowo tworzy sciane",
+      "&r   &7z obsydianu. Pamietaj aby",
+      "&r   &7pod postawionym farmerem bylo",
+      "&r   &7puste miejsce.",
+      "&r"
+    ]
+  },
+  "sand_farmer": {
+    "name": "&6&l» &e&lSand Farmer &6&l«",
+    "lore": [
+      "&r",
+      "&r &7» &f&lInformacje:",
+      "&r",
+      "&r   &7Natychmiastowo tworzy sciane",
+      "&r   &7z piasku. Pamietaj aby",
+      "&r   &7pod postawionym farmerem bylo",
+      "&r   &7puste miejsce.",
+      "&r"
+    ]
+  },
+  "kopacz_fosy": {
+    "name": "&8&l» &7&lKopacz Fosy &8&l«",
+    "lore": [
+      "&r",
+      "&r &7» &f&lInformacje:",
+      "&r",
+      "&r   &7Natychmiastowo usuwa bloki",
+      "&r   &7pod postawionym farmerem.",
+      "&r"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+zwykla_stoniarka:
+  shape:
+  - "BBB"
+  - "BGB"
+  - "BBB"
+  ingredients:
+    B: DIAMOND
+    G: DIAMOND_PICKAXE
+    
+szybka_stoniarka:
+  shape:
+  - "DDD"
+  - "DZD"
+  - "DDD"
+  ingredients:
+    D: DIAMOND_BLOCK
+    Z: DIAMOND_PICKAXE
+

@@ -1,0 +1,28 @@
+PERMISSION_MISSING: '&8[ &f&lDROP &8] &4Nie masz do tego permisji!'
+COMMAND_ARGUMENT_UNKNOWN: |-
+  &8[ &f&lDROP &8] &7Niepoprawna komenda!
+  &7Poprawna komenda:
+   &2/drop <info, stack, DROPPABLE_NAME>
+GUI_TITLE: '&2&lDROP'
+GUI_EXIT_BUTTON: '&cWyjscie'
+GUI_BACK_BUTTON: '&fWroc'
+INFO_ENABLED: '&awlaczony'
+INFO_DISABLED: '&cwylaczony'
+GUI_ITEM_DESCRIPTION_THIS_ITEM_DROP_IS: '&7Ten drop jest'
+GUI_ITEM_DESCRIPTION_RIGHT_CLICK_TO_TOGGLE: '&7PRAWY &fedytuj.'
+GUI_ITEM_DESCRIPTION_LEFT_CLICK_TO_SEE_DETAILS: '&7LEWY &fsprawdz szczegoly.'
+GUI_ITEM_LEVEL_IN_RANGE: '&7Wysokosc Y'
+COBBLE_TOGGLE_BUTTON_NAME: '&7Drop kamienia ze stone'
+INFO_FORTUNE_0: Bez fortuny
+INFO_FORTUNE_1: Fortune 1
+INFO_FORTUNE_2: Fortune 2
+INFO_FORTUNE_3: Fortune 3
+INFO_DROP_CHANCE: Szansa
+INFO_DROP_AMOUNT: Ilosc
+GUI_SECOND_TITLE: Info
+INFO_DROP_DISABLED: Drop wylaczony przez administratora.
+TREASURE_CHEST_PRIMARY: '&8[ &f&lDROP &8]  &7Znalazles &2super &askrzynie&7!'
+TREASURE_CHEST_SECONDARY: '&8[ &f&lDROP &8] &bW srodku jest...'
+TREASURE_CHEST_BROADCAST: '&7>> &f@name &7znalazl &2super &askrzynie!'
+RELOADED_SUCCESSFULLY: Przeladowano
+CHEST_CANT_BE_SPAWNED: Wypuszczono przedmioty z ekwipunku.

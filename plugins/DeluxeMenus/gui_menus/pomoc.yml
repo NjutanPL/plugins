@@ -1,0 +1,253 @@
+open_command: pomoc
+size: 45
+menu_title: '&3&l⋆ &8Informacje Serwerowe&3&l ⋆'
+items:
+  'spaceslot1':
+    material: MAGENTA_STAINED_GLASS_PANE
+    data: 15
+    slot: 11
+    display_name: '&r'
+    lore: []
+    slots:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 17
+    - 18
+    - 26
+    - 27
+    - 35
+    - 36
+    - 37
+    - 38
+    - 39
+    - 41
+    - 42
+    - 43
+    - 44
+  'spaceslot2':
+    material: PINK_STAINED_GLASS_PANE
+    data: 10
+    slot: 0
+    display_name: '&r'
+    lore: []
+    slots:
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 19
+    - 25
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+  'store':
+    material: basehead- eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM2ZTk0ZjZjMzRhMzU0NjVmY2U0YTkwZjJlMjU5NzYzODllYjk3MDlhMTIyNzM1NzRmZjcwZmQ0ZGFhNjg1MiJ9fX0=
+    data: 0
+    slot: 20
+    display_name: "&6&lSKLEP"
+    lore:
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &a&lINFORMACJE"
+      - "&8❘"
+      - "&8❘ &7Kupuje rangi w sklepie"
+      - "&8❘ &7oraz mnostwo przywilejow"
+      - "&8❘ &7pomagajac przy tym"
+      - "&8❘ &7rozwijac serwer!"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &eKliknij aby zobaczyc &nsklep"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+    left_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &6&lSKLEP: &ewww.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+    right_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &6&lSKLEP: &ewww.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+  'discord':
+    material: basehead- eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzg3M2MxMmJmZmI1MjUxYTBiODhkNWFlNzVjNzI0N2NiMzlhNzVmZjFhODFjYmU0YzhhMzliMzExZGRlZGEifX19
+    data: 0
+    slot: 21
+    display_name: "&9&lDISCORD"
+    lore:
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &a&lINFORMACJE"
+      - "&8❘"
+      - "&8❘ &7Dolacz do discorda serwera"
+      - "&8❘ &7dowiaduj sie o wszystkim"
+      - "&8❘ &7jako pierwszy i wygrywaj"
+      - "&8❘ &7w super giveawayach!"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &eKliknij aby zobaczyc &ndiscord"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+    left_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &9&lDISCORD: &bdc.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+    right_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &9&lDISCORD: &bdc.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+  'website':
+    material: basehead- eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM5Nzg0M2ZkM2E2ODUyOGEyODY3NDE2OWI5YjgzMWMxNjU4ZmIxZDg2YTcyMTgyNmRjZWQ1MDM0MmUzMjVmMiJ9fX0=
+    data: 0
+    slot: 22
+    display_name: "&3&lFANPAGE"
+    lore:
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &a&lINFORMACJE"
+      - "&8❘"
+      - "&8❘ &7Polub nasz fanpage"
+      - "&8❘ &7aby wiedziec wiecej!"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &eKliknij aby zobaczyc &nfanpage"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+    left_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &3&lFANPAGE: &bfb.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+    right_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &3&lFANPAGE: &bfb.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+  'rules':
+    material: basehead- eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkyZTMxZmZiNTljOTBhYjA4ZmM5ZGMxZmUyNjgwMjAzNWEzYTQ3YzQyZmVlNjM0MjNiY2RiNDI2MmVjYjliNiJ9fX0=
+    data: 0
+    slot: 23
+    display_name: "&2&lZASADY"
+    lore:
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &a&lINFORMACJE"
+      - "&8❘"
+      - "&8❘ &7Przeczytaj i przestrzegaj!"
+      - "&8❘ &7Chcemy, aby kazdy gral"
+      - "&8❘ &7u nas w przyjemnej"
+      - "&8❘ &7atmosferze i o to dbamy!"
+      - "&8❘ &7"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &eKliknij aby zobaczyc &nglowne zasady"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+    left_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &2&lZASADY'
+      - '[message] '
+      - '[message] &8#1  &7➙ &eSzanuj innych.'
+      - '[message] &8#2  &7➙ &eNie spamuj.'
+      - '[message] &8#3  &7➙ &eBadz tolerancyjny.'
+      - '[message] &8#4  &7➙ &eNie cheatuj.'
+      - '[message] &8#5  &7➙ &eNie niszcz kogos pracy.'
+      - '[message] &8#6  &7➙ &eNie wykorzystuj bugow.'
+      - '[message] &8#7  &7➙ &eNie oszukuj graczy.'
+      - '[message] &8#8  &7➙ &eNie podszywaj sie pod kogos kim nie jestes.'
+      - '[message] &8#9  &7➙ &eNie pros o rangi.'
+      - '[message] &8#10 &7➙ &eNie uzywaj obrazliwych nazw i skinow.'
+      - '[message] &8#11 &7➙ &eZakaz modyfikacji ulatwiajacych gre.'
+      - '[message] &8#12 &7➙ &eNie pisz caps lockiem na czacie.'
+      - '[message] &8#13 &7➙ &eNie reklamuj rzeczy nie zwiazanych z bestmine.pl.'
+      - '[message] &8#14 &7➙ &eLamanie zasad zglaszaj Administracji.'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+    right_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &2&lZASADY'
+      - '[message] '
+      - '[message] &8#1  &7➙ &eSzanuj innych.'
+      - '[message] &8#2  &7➙ &eNie spamuj.'
+      - '[message] &8#3  &7➙ &eBadz tolerancyjny.'
+      - '[message] &8#4  &7➙ &eNie cheatuj.'
+      - '[message] &8#5  &7➙ &eNie niszcz kogos pracy.'
+      - '[message] &8#6  &7➙ &eNie wykorzystuj bugow.'
+      - '[message] &8#7  &7➙ &eNie oszukuj graczy.'
+      - '[message] &8#8  &7➙ &eNie podszywaj sie pod kogos kim nie jestes.'
+      - '[message] &8#9  &7➙ &eNie pros o rangi.'
+      - '[message] &8#10 &7➙ &eNie uzywaj obrazliwych nazw i skinow.'
+      - '[message] &8#11 &7➙ &eZakaz modyfikacji ulatwiajacych gre.'
+      - '[message] &8#12 &7➙ &eNie pisz caps lockiem na czacie.'
+      - '[message] &8#13 &7➙ &eNie reklamuj rzeczy nie zwiazanych z bestmine.pl.'
+      - '[message] &8#14 &7➙ &eLamanie zasad zglaszaj Administracji.'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+  'staff':
+    material: basehead- eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmM4YjFmNmJiYjBlMmExYTllMDhiNDM0NmRmYWE2MWEzOTQ5NDM2Yzc5MmY1NDMwOGE0OGE4MGU1ZjlkODI5YSJ9fX0=
+    data: 0
+    slot: 24
+    display_name: "&d&lDOLACZ DO NAS"
+    lore:
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &a&lINFORMACJE"
+      - "&8❘"
+      - "&8❘ &7Jesli rekrutacja jest &a&lON"
+      - "&8❘ &7zawsze zostaniesz poinformowany"
+      - "&8❘ &7na naszym kanale YT!"
+      - "&8❘ &8"
+      - "&8❘ &7Aktualnie nie ma rekrutacji."
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+      - "&8❘ &eKliknij aby zobaczyc &nkanal YT"
+      - "&8❘━ ━ ━ ━ ━ ━ ━ ━ ━ ━ "
+    left_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &5&lINFORMACJE ZAWSZE NA YOUTUBE:'
+      - '[message] &dyt.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+    right_click_commands:
+      - '[message] &8&m+---------------***---------------+'
+      - '[message] '
+      - '[message] &5&lINFORMACJE ZAWSZE NA YOUTUBE:'
+      - '[message] &dyt.bestmine.pl'
+      - '[message] '
+      - '[message] &8&m+---------------***---------------+'
+      - '[close]'
+#-----------------------------------------------------------------------------------------------
+  'close':
+    material: BARRIER
+    data: 0
+    slot: 40
+    display_name: '&cZamknij'
+    lore:
+      - ""
+      - "&8Zamknij menu"
+    left_click_commands:
+      - '[close]'
+    right_click_commands:
+      - '[close]'
+#-----------------------------------------------------------------------------------------------

@@ -1,0 +1,11 @@
+# 
+# chat.bypass - Mozliwosc pisania przy wylaczonym czacie
+# chat.slow.bypass - Mozliwosc pisania na czacie bez spowolnienia
+# chat.command - Mozliwosc zarzadzania czatem
+# chat.on - Mozliwosc wlaczenia czatu
+# chat.off - Mozliwosc wylaczenia czatu
+# chat.clear - Mozliwosc wyczyszczenia czatu
+# chat.slow - Mozliwosc ustawienia czasu spowolnienia
+chat:
+  status: true
+  slowmode: 4

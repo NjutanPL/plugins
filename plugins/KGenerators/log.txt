@@ -1,0 +1,15 @@
+[18-06-2021 00:29:10] WorldGuard: Registering kgenerators-pick-up flag
+[18-06-2021 00:29:10] WorldGuard: Registering kgenerators-only-gen-break flag
+[18-06-2021 00:29:23] Generators file: Loaded single zwykla_stoniarka generating variety of 1 blocks every 40 ticks
+[18-06-2021 00:29:23] Generators file: Loaded single szybka_stoniarka generating variety of 1 blocks every 20 ticks
+[18-06-2021 00:29:23] Recipes file: Loaded 2 generator recipes!
+[18-06-2021 00:29:23] Placed generators file: Placed generators are loaded in delayed init task! Informations about them are located further in this log!
+[18-06-2021 00:29:23] Upgrades file: Loaded 1 upgrades
+[18-06-2021 00:29:23] Lang: Messages and Guis file loaded with lang: pl
+[18-06-2021 00:29:23] Scheduled generators data file: Scheduled generators are loaded in delayed init task! Informations about them are located further in this log!
+[18-06-2021 00:29:25] Dependencies: Detected plugin WorldGuard. Hooked into it.
+[18-06-2021 00:29:25] Dependencies: Detected plugin HolographicDisplays. Hooked into it.
+[18-06-2021 00:29:25] Dependencies: Detected Vault economy. Hooked into it.
+[18-06-2021 00:29:25] Dependencies: Detected Vault permissions. Hooked into it.
+[18-06-2021 00:29:25] Placed generators file: Loaded properly 342 placed generators
+[18-06-2021 00:29:25] Scheduled generators data file: Loaded 0 scheduled generators

@@ -1,0 +1,21 @@
+####################################################################
+# Uprawnienia:                                                     #
+#  itemshop.reload - Przeladowanie wszystkich plikow               #
+#  itemshop.service - Sprawdzanie uslug i ich nadawanie            #
+#                                                                  #
+# Komendy:                                                         #
+#  /itemshop - Sprawdzanie uslug i ich nadawanie (/is)             #
+#  /itemshopreload - Przeladowanie wszystkich plikow (/isreload)   #
+####################################################################
+
+messages:
+  # Wiadomosc do gracza informujaca o tym, ze nie ma uprawnienia do danej komendy
+  no-permission: "&8>> &cNie masz dostepu do tej komendy! &7(%permission%)"
+  # Wiadomosc do gracza informujaca o poprawnym uzyciu komendy
+  correct-usage: "&8>> &cPoprawne uzycie: &7%correct-usage%"
+  # Wiadomosc do gracza informujaca o poprawnym przeladowaniu plikow
+  reload-files: "&aPoprawnie przeladowano wszystkie pliki!"
+  # Wiadomosc do gracza wyswietlajaca liste wszystkich dostepnych uslug
+  list: "&aLista dostepnych uslug: &6%services%"
+  # Wiadomosc do gracza informujaca o niepoprawnej usludze
+  invalid-service: "&8>> &cNiepoprawna usluga! &7(/is list)"

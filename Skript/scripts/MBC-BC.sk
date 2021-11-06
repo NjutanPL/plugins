@@ -1,0 +1,11 @@
+on eat of enchanted golden apple:
+ apply speed 2 to player for 10 seconds
+ apply fire Resistance to player for 120 seconds
+ apply absorption 2 to player for 30 second
+
+
+
+on eat of golden apple item:
+ apply speed 2 to player for 3 seconds
+ apply fire Resistance to player for 3 seconds
+ apply absorption 2 to player for 15 second

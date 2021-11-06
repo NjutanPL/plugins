@@ -1,0 +1,1747 @@
+on first join:
+    wait 1 seconds
+    execute console command "give %player% 274 1"
+    execute console command "give %player% 364 64"
+    execute console command "give %player% 130 1"
+    execute console command "give %player% 5 48"
+
+on death of player:
+    wait 0 seconds
+    execute console command "give %player% 274 1"
+    execute console command "give %player% 364 64"
+    execute console command "give %player% 130 1"
+    execute console command "give %player% 5 48"
+    execute console command "kick %player% &cZDEDALES!"
+    
+    
+options:
+		tag: &e&lTIMEHC.PL &c»
+
+		WiadomoscBrakTopki: &cBrak osob w topce!
+		WiadomoscResetTopki: &c&lTopka zostala zresetowana przez Administratora!
+
+		BlokPowrotKategoriaTopka: yellow glass
+		WiadomoscPowrotKategoriaTopka: &c&lWroc do Menu
+		SlotPowrotKategoriaTopka: 22
+
+on join:
+	set {_zabici.gracze.%player%} to yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of player%.yml"
+	set {_zabici.gracze.%player%} to {_zabici.gracze.%player%} parsed as number
+	if {_zabici.gracze.%player%} is not set:
+		set yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.Smierci" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.WydanyHajsItemshop" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.PostawioneBloki" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.ZjedzoneRefile" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.ZjedzoneKoxy" from file "zmienne/%uuid of player%.yml" to "0"
+		set yaml value "topka.WykopanyStone" from file "zmienne/%uuid of player%.yml" to "0"
+
+command /resettopka:
+	trigger:
+		if player has permission "reset.topka":
+			delete {zabici.gracze::*}
+			delete {smierci::*}
+			delete {postawione.bloki::*}
+			delete {zjedzone.refile::*}
+			delete {zjedzone.koxy::*}
+			delete {wykopany.stone::*}
+			broadcast "{@tag} {@WiadomoscResetTopki}"
+			stop
+		else:
+			send "&8● &cNie odnaleziono takiej komendy. Sprawdz &7/pomoc&c."
+			stop
+
+command /staty [<offlineplayer>]:
+	trigger:
+		if arg 1 is not set:
+			set {_zabici.gracze.%player%} to yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of player%.yml"
+			set {_zabici.gracze.%player%} to {_zabici.gracze.%player%} parsed as number
+			set {_wydany.hajs.itemshop.%player%} to yaml value "topka.WydanyHajsItemshop" from file "zmienne/%uuid of player%.yml"
+			set {_wydany.hajs.itemshop.%player%} to {_wydany.hajs.itemshop.%player%} parsed as number
+			set {_smierci.%player%} to yaml value "topka.Smierci" from file "zmienne/%uuid of player%.yml"
+			set {_smierci.%player%} to {_smierci.%player%} parsed as number
+			set {_postawione.bloki.%player%} to yaml value "topka.PostawioneBloki" from file "zmienne/%uuid of player%.yml"
+			set {_postawione.bloki.%player%} to {_postawione.bloki.%player%} parsed as number
+			set {_zjedzone.refile.%player%} to yaml value "topka.ZjedzoneRefile" from file "zmienne/%uuid of player%.yml"
+			set {_zjedzone.refile.%player%} to {_zjedzone.refile.%player%} parsed as number
+			set {_zjedzone.koxy.%player%} to yaml value "topka.ZjedzoneKoxy" from file "zmienne/%uuid of player%.yml"
+			set {_zjedzone.koxy.%player%} to {_zjedzone.koxy.%player%} parsed as number
+			set {_wykopany.stone.%player%} to yaml value "topka.WykopanyStone" from file "zmienne/%uuid of player%.yml"
+			set {_wykopany.stone.%player%} to {_wykopany.stone.%player%} parsed as number
+			open chest with 6 rows named "&c&lStaty %player%" to player
+			wait 2 ticks
+			set {_l} to 0
+			loop 54 times:
+				format slot {_l} of player with black glass to be unstealable
+				add 1 to {_l}
+			format slot 12 of player with 1 diamond sword named "&e&lZABITYCH GRACZY: &c&l%{_zabici.gracze.%player%}%" to be unstealable
+			format slot 14 of player with 1 skeleton head named "&e&lSMIERCI: &c&l%{_smierci.%player%}%" to be unstealable
+			format slot 22 of player with 1 gold ingot named "&e&lWYDANY HAJS W ITEMSHOP: &c&l%{_wydany.hajs.itemshop.%player%}%" to be unstealable
+			format slot 30 of player with 1 clay bricks block named "&e&lPOSTAWIONE BLOKI: &c&l%{_postawione.bloki.%player%}%" to be unstealable
+			format slot 32 of player with 1 stone named "&e&lWYKOPANY STONE: &c&l%{_wykopany.stone.%player%}%" to be unstealable
+			format slot 39 of player with 1 golden apple:1 named "&e&lZJEDZONE KOXY: &c&l%{_zjedzone.koxy.%player%}%" to be unstealable
+			format slot 41 of player with 1 golden apple named "&e&lZJEDZONE REFILE: &c&l%{_zjedzone.refile.%player%}%" to be unstealable
+		if arg 1 is set:
+			set {_zabici.gracze.%arg 1%} to yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of arg 1%.yml"
+			set {_zabici.gracze.%arg 1%} to {_zabici.gracze.%arg 1%} parsed as number
+			set {_wydany.hajs.itemshop.%arg 1%} to yaml value "topka.WydanyHajsItemshop" from file "zmienne/%uuid of arg 1%.yml"
+			set {_wydany.hajs.itemshop.%arg 1%} to {_wydany.hajs.itemshop.%arg 1%} parsed as number
+			set {_smierci.%arg 1%} to yaml value "topka.Smierci" from file "zmienne/%uuid of arg 1%.yml"
+			set {_smierci.%arg 1%} to {_smierci.%arg 1%} parsed as number
+			set {_postawione.bloki.%arg 1%} to yaml value "topka.PostawioneBloki" from file "zmienne/%uuid of arg 1%.yml"
+			set {_postawione.bloki.%arg 1%} to {_postawione.bloki.%arg 1%} parsed as number
+			set {_zjedzone.refile.%arg 1%} to yaml value "topka.ZjedzoneRefile" from file "zmienne/%uuid of arg 1%.yml"
+			set {_zjedzone.refile.%arg 1%} to {_zjedzone.refile.%arg 1%} parsed as number
+			set {_zjedzone.koxy.%arg 1%} to yaml value "topka.ZjedzoneKoxy" from file "zmienne/%uuid of arg 1%.yml"
+			set {_zjedzone.koxy.%arg 1%} to {_zjedzone.koxy.%arg 1%} parsed as number
+			set {_wykopany.stone.%arg 1%} to yaml value "topka.WykopanyStone" from file "zmienne/%uuid of arg 1%.yml"
+			set {_wykopany.stone.%arg 1%} to {_wykopany.stone.%arg 1%} parsed as number
+			open chest with 6 rows named "&c&lStaty %arg 1%" to player
+			wait 2 ticks
+			set {_l} to 0
+			loop 54 times:
+				format slot {_l} of player with black glass to be unstealable
+				add 1 to {_l}
+			format slot 12 of player with 1 diamond sword named "&e&lZABITYCH GRACZY: &c&l%{_zabici.gracze.%arg 1%}%" to be unstealable
+			format slot 14 of player with 1 skeleton head named "&e&lSMIERCI: &c&l%{_smierci.%arg 1%}%" to be unstealable
+			format slot 22 of player with 1 gold ingot named "&e&lWYDANY HAJS W ITEMSHOP: &c&l%{_wydany.hajs.itemshop.%arg 1%}%" to be unstealable
+			format slot 30 of player with 1 clay bricks block named "&e&lPOSTAWIONE BLOKI: &c&l%{_postawione.bloki.%arg 1%}%" to be unstealable
+			format slot 32 of player with 1 stone named "&e&lWYKOPANY STONE: &c&l%{_wykopany.stone.%arg 1%}%" to be unstealable
+			format slot 39 of player with 1 golden apple:1 named "&e&lZJEDZONE KOXY: &c&l%{_zjedzone.koxy.%arg 1%}%" to be unstealable
+			format slot 41 of player with 1 golden apple named "&e&lZJEDZONE REFILE: &c&l%{_zjedzone.refile.%arg 1%}%" to be unstealable
+			stop
+
+command /topka [<number>]:
+	trigger:
+		if arg 1 is not set:
+			wait 2 ticks
+			open chest with 3 rows named "&c&lTOP GRACZY" to player
+			wait 2 ticks
+			set {_l} to 0
+			loop 27 times:
+				format slot {_l} of player with black glass to be unstealable
+				add 1 to {_l}
+			format slot 4 of player with player head named "&c&l» &c&lTOP GRACZE" with lore "||&c» &7Tutaj znajdziesz liste najlepszych graczy:|| ||&c» &7Kliknij wybrana kategorie" to be unstealable
+			format slot 10 of player with stone named "&7&lTOP WYKOPANEGO STONE'A" to close then run [execute player command "/topka 1"]
+			format slot 12 of player with golden apple named "&6&lTOP ZJEDZONE REFILE" to close then run [execute player command "/topka 5"]
+			format slot 14 of player with enchanted golden apple named "&b&lTOP ZJEDZONE KOXY" to close then run [execute player command "/topka 6"]
+			format slot 16 of player with clay bricks block named "&2&lTOP POSTAWIONYCH BLOKOW" to close then run [execute player command "/topka 2"]
+			format slot 20 of player with diamond sword named "&c&lTOP ZABOJSTW" to close then run [execute player command "/topka 3"]
+			format slot 24 of player with player head named "&e&lTOP SMIERCI" to close then run [execute player command "/topka 4"]
+			stop
+
+#================= TOP WYKOPANEGO STONE'A ================
+		if arg 1 is 1:
+			if {wykopany.stone::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&7&lTOP WYKOPANEGO STONE'A" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {wykopany.stone::*}
+				loop {_num} times:
+					loop {wykopany.stone::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {wykopany.stone::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &eWykopano &6%{_v.%loop-number%}% Stone'a" to be unstealable
+							add 1 to {_a}
+						set {wykopany.stone::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP POSTAWIONYCH BLOKOW ================
+		if arg 1 is 2:
+			if {postawione.bloki::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&2&lTOP POSTAWIONYCH BLOKOW" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {postawione.bloki::*}
+				loop {_num} times:
+					loop {postawione.bloki::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {postawione.bloki::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &ePostawil &6%{_v.%loop-number%}% Blokow" to be unstealable
+							add 1 to {_a}
+						set {postawione.bloki::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP ZABOJSTW ================
+		if arg 1 is 3:
+			if {zabici.gracze::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&c&lTOP ZABOJSTW" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {zabici.gracze::*}
+				loop {_num} times:
+					loop {zabici.gracze::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {zabici.gracze::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &eZabil &6%{_v.%loop-number%}% osob" to be unstealable
+							add 1 to {_a}
+						set {zabici.gracze::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP SMIERCI ================
+		if arg 1 is 4:
+			if {smierci::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&e&lTOP SMIERCI" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {smierci::*}
+				loop {_num} times:
+					loop {smierci::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {smierci::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &eZostal zabity &6%{_v.%loop-number%}%x" to be unstealable
+							add 1 to {_a}
+						set {smierci::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP ZJEDZONE REFILE ================
+		if arg 1 is 5:
+			if {zjedzone.refile::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&6&lTOP ZJEDZONE REFILE" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {zjedzone.refile::*}
+				loop {_num} times:
+					loop {zjedzone.refile::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {zjedzone.refile::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &eZjadl &6%{_v.%loop-number%}% refili" to be unstealable
+							add 1 to {_a}
+						set {zjedzone.refile::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP ZJEDZONE KOXY ================
+		if arg 1 is 6:
+			if {zjedzone.koxy::*} is not set:
+				close player's inventory
+				send "{@tag} {@WiadomoscBrakTopki}"
+				stop
+			else:
+				wait 2 ticks
+				open chest with 3 rows named "&e&lTOP SMIERCI" to player
+				wait 2 ticks
+				format slot {@SlotPowrotKategoriaTopka} of player with {@BlokPowrotKategoriaTopka} named "{@WiadomoscPowrotKategoriaTopka}" to close then run [execute player command "/topka"]
+				set {_num} to size of {zjedzone.koxy::*}
+				loop {_num} times:
+					loop {zjedzone.koxy::*}:
+						if {_v.%loop-number%} is not set:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+						if loop-value is greater than {_v.%loop-number%}:
+							set {_v.%loop-number%} to loop-value
+							set {_n.%loop-number%} to loop-index
+					remove {_v.%loop-number%} from {zjedzone.koxy::*}
+				set {_a} to 0
+				loop {_num} times:
+					if loop-number is less than or equal to 5:
+						set {_m} to "%loop-number%"
+						if loop-number is more than 19:
+							set {_m} to loop-number
+						if {_v.%loop-number%} is more than 0:
+							format slot {_a} of player with player head named "&a>> %{_n.%loop-number%}% [%{_m}%]" with lore " ||&6>> &eZjadl &6%{_v.%loop-number%}% koxow" to be unstealable
+							add 1 to {_a}
+						set {zjedzone.koxy::%{_n.%loop-number%}%} to {_v.%loop-number%}
+
+#================= TOP ZJEDZONE KOXY ================
+on eat enchanted golden apple:
+	set {_zjedzone.koxy.%player%} to yaml value "topka.ZjedzoneKoxy" from file "zmienne/%uuid of player%.yml"
+	set {_zjedzone.koxy.%player%} to {_zjedzone.koxy.%player%} parsed as number
+	add 1 to {_zjedzone.koxy.%player%}
+	set {zjedzone.koxy::%player%} to {_zjedzone.koxy.%player%}
+	set yaml value "topka.ZjedzoneKoxy" from file "zmienne/%uuid of player%.yml" to "%{_zjedzone.koxy.%player%}%"
+	stop
+
+#================= TOP ZJEDZONE REFILE ================
+on eat golden apple:
+	set {_zjedzone.refile.%player%} to yaml value "topka.ZjedzoneRefile" from file "zmienne/%uuid of player%.yml"
+	set {_zjedzone.refile.%player%} to {_zjedzone.refile.%player%} parsed as number
+	add 1 to {_zjedzone.refile.%player%}
+	set {zjedzone.refile::%player%} to {_zjedzone.refile.%player%}
+	set yaml value "topka.ZjedzoneRefile" from file "zmienne/%uuid of player%.yml" to "%{_zjedzone.refile.%player%}%"
+	stop
+
+#================= TOP WYKOPANEGO STONE'A ================
+on break:
+	if event-block is stone:
+		set {_wykopany.stone.%player%} to yaml value "topka.WykopanyStone" from file "zmienne/%uuid of player%.yml"
+		set {_wykopany.stone.%player%} to {_wykopany.stone.%player%} parsed as number
+		add 1 to {_wykopany.stone.%player%}
+		set {wykopany.stone::%player%} to {_wykopany.stone.%player%}
+		set yaml value "topka.WykopanyStone" from file "zmienne/%uuid of player%.yml" to "%{_wykopany.stone.%player%}%"
+		stop
+
+#================= TOP POSTAWIONYCH BLOKOW ================
+on place:
+	set {_postawione.bloki.%player%} to yaml value "topka.PostawioneBloki" from file "zmienne/%uuid of player%.yml"
+	set {_postawione.bloki.%player%} to {_postawione.bloki.%player%} parsed as number
+	add 1 to {_postawione.bloki.%player%}
+	set {postawione.bloki::%player%} to {_postawione.bloki.%player%}
+	set yaml value "topka.PostawioneBloki" from file "zmienne/%uuid of player%.yml" to "%{_postawione.bloki.%player%}%"
+	stop
+
+#================= TOP ZABOJSTW/SMIERCI ================
+on death:
+	if attacker is a player:
+		if victim is a player:
+			set {_zabici.gracze.%attacker%} to yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of attacker%.yml"
+			set {_zabici.gracze.%attacker%} to {_zabici.gracze.%attacker%} parsed as number
+			set {_smierci.%victim%} to yaml value "topka.Smierci" from file "zmienne/%uuid of victim%.yml"
+			set {_smierci.%victim%} to {_smierci.%victim%} parsed as number
+			add 1 to {_zabici.gracze.%attacker%}
+			set {zabici.gracze::%attacker%} to {_zabici.gracze.%attacker%}
+			set yaml value "topka.ZabiciGracze" from file "zmienne/%uuid of attacker%.yml" to "%{_zabici.gracze.%attacker%}%"
+			add 1 to {_smierci.%victim%}
+			set {smierci::%victim%} to {_smierci.%victim%}
+			set yaml value "topka.Smierci" from file "zmienne/%uuid of victim%.yml" to "%{_smierci.%victim%}%"
+			stop
+	if victim is a player:
+		set {_smierci.%victim%} to yaml value "topka.Smierci" from file "zmienne/%uuid of victim%.yml"
+		set {_smierci.%victim%} to {_smierci.%victim%} parsed as number
+		add 1 to {_smierci.%victim%}
+		set {smierci::%victim%} to {_smierci.%victim%}
+		set yaml value "topka.Smierci" from file "zmienne/%uuid of victim%.yml" to "%{_smierci.%victim%}%"
+		stop
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+variables:
+	{seconds::%player%} = 0
+	{minutes::%player%} = 0
+	{hours::%player%} = 0
+	{days::%player%} = 0
+	{unlock::%player%} = false
+	{os::%player%} = 0
+	{oss::%player%} = 0
+	{osss::%player%} = 0
+	{ossss::%player%} = 0
+command /test-os2 [<text>]:
+	trigger:
+		send "&7Wartosci zostaly dodane do twoich argumentow."
+		set {oss::%player%} to 1000000
+		set {os::%player%} to 100000
+		set {osss::%player%} to 100
+		set {ossss::%player%} to 100
+on first join:
+	set {os::%player%} to 0
+	set {os::czas1::%player%} to false
+	set {os::czas2::%player%} to false
+	set {os::czas3::%player%} to false
+	set {os::czas4::%player%} to false
+	set {os::czas5::%player%} to false
+	set {os::czas6::%player%} to false
+	set {os::czas7::%player%} to false
+	set {os::czas7::%player%} to false
+	set {oss::%player%} to 0
+	set {os::stone1::%player%} to false
+	set {os::stone2::%player%} to false
+	set {os::stone3::%player%} to false
+	set {os::stone4::%player%} to false
+	set {os::stone5::%player%} to false
+	set {os::stone6::%player%} to false
+	set {os::stone7::%player%} to false
+	set {os::stone1::reward::%player%} to false
+	set {os::stone2::reward::%player%} to false
+	set {os::stone3::reward::%player%} to false
+	set {os::stone4::reward::%player%} to false
+	set {os::stone5::reward::%player%} to false
+	set {os::stone6::reward::%player%} to false
+	set {os::stone7::reward::%player%} to false
+	set {os::czas1::reward::%player%} to false
+	set {os::czas2::reward::%player%} to false
+	set {os::czas3::reward::%player%} to false
+	set {os::czas4::reward::%player%} to false
+	set {os::czas5::reward::%player%} to false
+	set {os::czas6::reward::%player%} to false
+	set {os::czas7::reward::%player%} to false
+	set {osss::%player%} to 0
+	set {os::join1::%player%} to false
+	set {os::join2::%player%} to false
+	set {os::join3::%player%} to false
+	set {os::join4::%player%} to false
+	set {os::join5::%player%} to false
+	set {os::join6::%player%} to false
+	set {os::join7::%player%} to false
+	set {os::join1::reward::%player%} to false
+	set {os::join2::reward::%player%} to false
+	set {os::join3::reward::%player%} to false
+	set {os::join4::reward::%player%} to false
+	set {os::join5::reward::%player%} to false
+	set {os::join6::reward::%player%} to false
+	set {os::join7::reward::%player%} to false
+	set {ossss::%player%} to 0
+	set {os::koxy1::%player%} to false
+	set {os::koxy2::%player%} to false
+	set {os::koxy3::%player%} to false
+	set {os::koxy4::%player%} to false
+	set {os::koxy5::%player%} to false
+	set {os::koxy6::%player%} to false
+	set {os::koxy7::%player%} to false
+	set {os::koxy1::reward::%player%} to false
+	set {os::koxy2::reward::%player%} to false
+	set {os::koxy3::reward::%player%} to false
+	set {os::koxy4::reward::%player%} to false
+	set {os::koxy5::reward::%player%} to false
+	set {os::koxy6::reward::%player%} to false
+	set {os::koxy7::reward::%player%} to false
+command /test-os [<text>]:
+	trigger:
+		set {os::%player%} to 0
+		set {os::czas1::%player%} to false
+		set {os::czas2::%player%} to false
+		set {os::czas3::%player%} to false
+		set {os::czas4::%player%} to false
+		set {os::czas5::%player%} to false
+		set {os::czas6::%player%} to false
+		set {os::czas7::%player%} to false
+		set {os::czas7::%player%} to false
+		set {oss::%player%} to 0
+		set {os::stone1::%player%} to false
+		set {os::stone2::%player%} to false
+		set {os::stone3::%player%} to false
+		set {os::stone4::%player%} to false
+		set {os::stone5::%player%} to false
+		set {os::stone6::%player%} to false
+		set {os::stone7::%player%} to false
+		set {os::stone1::reward::%player%} to false
+		set {os::stone2::reward::%player%} to false
+		set {os::stone3::reward::%player%} to false
+		set {os::stone4::reward::%player%} to false
+		set {os::stone5::reward::%player%} to false
+		set {os::stone6::reward::%player%} to false
+		set {os::stone7::reward::%player%} to false
+		set {os::czas1::reward::%player%} to false
+		set {os::czas2::reward::%player%} to false
+		set {os::czas3::reward::%player%} to false
+		set {os::czas4::reward::%player%} to false
+		set {os::czas5::reward::%player%} to false
+		set {os::czas6::reward::%player%} to false
+		set {os::czas7::reward::%player%} to false
+		set {osss::%player%} to 0
+		set {os::join1::%player%} to false
+		set {os::join2::%player%} to false
+		set {os::join3::%player%} to false
+		set {os::join4::%player%} to false
+		set {os::join5::%player%} to false
+		set {os::join6::%player%} to false
+		set {os::join7::%player%} to false
+		set {os::join1::reward::%player%} to false
+		set {os::join2::reward::%player%} to false
+		set {os::join3::reward::%player%} to false
+		set {os::join4::reward::%player%} to false
+		set {os::join5::reward::%player%} to false
+		set {os::join6::reward::%player%} to false
+		set {os::join7::reward::%player%} to false
+		set {ossss::%player%} to 0
+		set {os::koxy1::%player%} to false
+		set {os::koxy2::%player%} to false
+		set {os::koxy3::%player%} to false
+		set {os::koxy4::%player%} to false
+		set {os::koxy5::%player%} to false
+		set {os::koxy6::%player%} to false
+		set {os::koxy7::%player%} to false
+		set {os::koxy1::reward::%player%} to false
+		set {os::koxy2::reward::%player%} to false
+		set {os::koxy3::reward::%player%} to false
+		set {os::koxy4::reward::%player%} to false
+		set {os::koxy5::reward::%player%} to false
+		set {os::koxy6::reward::%player%} to false
+		set {os::koxy7::reward::%player%} to false
+on load:
+	loop 54 times:
+		add 1 to {_a}
+		"&6OSIAGNIECIA".Inventory.removeItem{{_a}};
+		"&6MONETY CZASU &7(ENDERCHEST)".Inventory.removeItem{{_a}};
+		"&6MONETY CZASU &7(ITEMY)".Inventory.removeItem{{_a}};
+		"&6MONETY CZASU".Inventory.removeItem{{_a}};
+		"&6OSIAGNIECIA CZASU".Inventory.removeItem{{_a}};
+		"&6OSIAGNIECIA GORNIKA".Inventory.removeItem{{_a}};
+		"&6STATYSTYKI".Inventory.removeItem{{_a}};
+		"&6JESTES PEWIEN?".Inventory.removeItem{{_a}};
+command /osiagniecia [<text>]:
+	aliases: /os
+	trigger:
+		if arg-1 is not set:
+			new Inventory "&6OSIAGNIECIA";
+			"&6OSIAGNIECIA".Inventory.setRow{1};
+			"&6OSIAGNIECIA".Inventory.setItem{1, 1 clock named "&eManiak" with lore "&fKliknij, aby przejsc dalej!"};
+			"&6OSIAGNIECIA".Inventory.setCommand{1, "osiagniecia czas"};
+			"&6OSIAGNIECIA".Inventory.setExecutor{1, "player"};
+			"&6OSIAGNIECIA".Inventory.setItem{2, 1 diamond pickaxe named "&eGornik" with lore "&fKliknij, aby przejsc dalej!"};
+			"&6OSIAGNIECIA".Inventory.setCommand{2, "osiagniecia stone"};
+			"&6OSIAGNIECIA".Inventory.setExecutor{2, "player"};
+			"&6OSIAGNIECIA".Inventory.setItem{3, 1 wooden door item named "&eOdwiedziny" with lore "&fKliknij, aby przejsc dalej!"};
+			"&6OSIAGNIECIA".Inventory.setCommand{3, "osiagniecia join"};
+			"&6OSIAGNIECIA".Inventory.setExecutor{3, "player"};
+			"&6OSIAGNIECIA".Inventory.setItem{4, 1 golden apple:1 named "&eGrubas" with lore "&fKliknij, aby przejsc dalej!"};
+			"&6OSIAGNIECIA".Inventory.setCommand{4, "osiagniecia koxy"};
+			"&6OSIAGNIECIA".Inventory.setExecutor{4, "player"};
+			"&6OSIAGNIECIA".Inventory.display{player};
+
+
+
+		if arg-1 is "join":
+			if {os::join1::%player%} is true:
+				if {os::join1::reward::%player%} is false:
+					set {_1} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_1} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc1} to ({osss::%player%}/5)*100
+				set {_1} to "&cnie wykonane! &7(&e%{_proc1}%%%&7)"
+				
+			if {os::join2::%player%} is true:
+				if {os::join2::reward::%player%} is false:
+					set {_2} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_2} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc2} to ({osss::%player%}/15)*100
+				set {_2} to "&cnie wykonane! &7(&e%{_proc2}%%%&7)"
+				
+			if {os::join3::%player%} is true:
+				if {os::join3::reward::%player%} is false:
+					set {_3} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_3} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc3} to ({osss::%player%}/25)*100
+				set {_3} to "&cnie wykonane! &7(&e%{_proc3}%%%&7)"
+				
+			if {os::join4::%player%} is true:
+				if {os::join4::reward::%player%} is false:
+					set {_4} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_4} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc4} to ({osss::%player%}/35)*100
+				set {_4} to "&cnie wykonane! &7(&e%{_proc4}%%%&7)"
+				
+			if {os::join5::%player%} is true:
+				if {os::join5::reward::%player%} is false:
+					set {_5} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_5} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc5} to ({osss::%player%}/45)*100
+				set {_5} to "&cnie wykonane! &7(&e%{_proc5}%%%&7)"
+				
+			if {os::join6::%player%} is true:
+				if {os::join6::reward::%player%} is false:
+					set {_6} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_6} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc6} to ({osss::%player%}/55)*100
+				set {_6} to "&cnie wykonane! &7(&e%{_proc6}%%%&7)"
+				
+			if {os::join7::%player%} is true:
+				if {os::join7::reward::%player%} is false:
+					set {_7} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_7} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc7} to ({osss::%player%}/100)*100
+				set {_7} to "&cnie wykonane! &7(&e%{_proc7}%%%&7)"
+			new Inventory "&6OSIAGNIECIA ODWIEDZIN";
+			"&6OSIAGNIECIA GORNIKA".Inventory.setRow{1};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{1, 1 wooden door item named "&eOdwiedziny I" with lore "&eOpis:||- Dolacz 5 razy na serwer!||||&ePostep osiagniecia||- %{_1}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{1, "osiagniecia join1"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{1, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{2, 1 wooden door item named "&eOdwiedziny II" with lore "&eOpis:||- Dolacz 15 razy na serwer!||||&ePostep osiagniecia||- %{_2}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{2, "osiagniecia join2"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{2, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{3, 1 wooden door item named "&eOdwiedziny III" with lore "&eOpis:||- Dolacz 25 razy na serwer!||||&ePostep osiagniecia||- %{_3}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{3, "osiagniecia join3"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{3, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{4, 1 wooden door item named "&eOdwiedziny IV" with lore "&eOpis:||- Dolacz 35 razy na serwer!||||&ePostep osiagniecia||- %{_4}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{4, "osiagniecia join4"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{4, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{5, 1 wooden door item named "&eOdwiedziny V" with lore "&eOpis:||- Dolacz 45 razy na serwer!||||&ePostep osiagniecia||- %{_5}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{5, "osiagniecia join5"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{5, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{6, 1 wooden door item named "&eOdwiedziny VI" with lore "&eOpis:||- Dolacz 55 razy na serwer!||||&ePostep osiagniecia||- %{_6}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{6, "osiagniecia join6"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{6, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{7, 1 wooden door item named "&eOdwiedziny VII" with lore "&eOpis:||- Dolacz 100 razy na serwer!||||&ePostep osiagniecia||- %{_7}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{7, "osiagniecia join7"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{7, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.display{player};
+
+
+		if arg-1 is "koxy":
+			if {os::koxy1::%player%} is true:
+				if {os::koxy1::reward::%player%} is false:
+					set {_1} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_1} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc1} to ({ossss::%player%}/3)*100
+				set {_1} to "&cnie wykonane! &7(&e%{_proc1}%%%&7)"
+				
+			if {os::koxy2::%player%} is true:
+				if {os::koxy2::reward::%player%} is false:
+					set {_2} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_2} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc2} to ({ossss::%player%}/6)*100
+				set {_2} to "&cnie wykonane! &7(&e%{_proc2}%%%&7)"
+				
+			if {os::koxy3::%player%} is true:
+				if {os::koxy3::reward::%player%} is false:
+					set {_3} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_3} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc3} to ({ossss::%player%}/9)*100
+				set {_3} to "&cnie wykonane! &7(&e%{_proc3}%%%&7)"
+				
+			if {os::koxy4::%player%} is true:
+				if {os::koxy4::reward::%player%} is false:
+					set {_4} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_4} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc4} to ({ossss::%player%}/12)*100
+				set {_4} to "&cnie wykonane! &7(&e%{_proc4}%%%&7)"
+				
+			if {os::koxy5::%player%} is true:
+				if {os::koxy5::reward::%player%} is false:
+					set {_5} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_5} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc5} to ({ossss::%player%}/15)*100
+				set {_5} to "&cnie wykonane! &7(&e%{_proc5}%%%&7)"
+				
+			if {os::koxy6::%player%} is true:
+				if {os::koxy6::reward::%player%} is false:
+					set {_6} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_6} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc6} to ({ossss::%player%}/18)*100
+				set {_6} to "&cnie wykonane! &7(&e%{_proc6}%%%&7)"
+				
+			if {os::koxy7::%player%} is true:
+				if {os::koxy7::reward::%player%} is false:
+					set {_7} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_7} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc7} to ({ossss::%player%}/21)*100
+				set {_7} to "&cnie wykonane! &7(&e%{_proc7}%%%&7)"
+			new Inventory "&6OSIAGNIECIA ODWIEDZIN";
+			"&6OSIAGNIECIA GORNIKA".Inventory.setRow{1};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{1, 1 wooden door item named "&eGrubas I" with lore "&eOpis:||- Zjedz 3 koxy!||||&ePostep osiagniecia||- %{_1}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{1, "osiagniecia koxy1"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{1, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{2, 1 wooden door item named "&eGrubas II" with lore "&eOpis:||- Zjedz 6 koxy!||||&ePostep osiagniecia||- %{_2}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{2, "osiagniecia koxy2"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{2, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{3, 1 wooden door item named "&eGrubas III" with lore "&eOpis:||- Zjedz 9 koxy!||||&ePostep osiagniecia||- %{_3}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{3, "osiagniecia koxy3"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{3, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{4, 1 wooden door item named "&eGrubas IV" with lore "&eOpis:||- Zjedz 12 koxy!||||&ePostep osiagniecia||- %{_4}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{4, "osiagniecia koxy4"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{4, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{5, 1 wooden door item named "&eGrubas V" with lore "&eOpis:||- Zjedz 15 koxy!||||&ePostep osiagniecia||- %{_5}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{5, "osiagniecia koxy5"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{5, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{6, 1 wooden door item named "&eGrubas VI" with lore "&eOpis:||- Zjedz 18 koxy!||||&ePostep osiagniecia||- %{_6}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{6, "osiagniecia koxy6"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{6, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{7, 1 wooden door item named "&eGrubas VII" with lore "&eOpis:||- Zjedz 21 koxy!||||&ePostep osiagniecia||- %{_7}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{7, "osiagniecia koxy7"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{7, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.display{player};
+
+		if arg-1 is "stone":
+			if {os::stone1::%player%} is true:
+				if {os::stone1::reward::%player%} is false:
+					set {_1} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_1} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc1} to ({oss::%player%}/500)*100
+				set {_1} to "&cnie wykonane! &7(&e%{_proc1}%%%&7)"
+				
+			if {os::stone2::%player%} is true:
+				if {os::stone2::reward::%player%} is false:
+					set {_2} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_2} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc2} to ({oss::%player%}/1000)*100
+				set {_2} to "&cnie wykonane! &7(&e%{_proc2}%%%&7)"
+				
+			if {os::stone3::%player%} is true:
+				if {os::stone3::reward::%player%} is false:
+					set {_3} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_3} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc3} to ({oss::%player%}/1500)*100
+				set {_3} to "&cnie wykonane! &7(&e%{_proc3}%%%&7)"
+				
+			if {os::stone4::%player%} is true:
+				if {os::stone4::reward::%player%} is false:
+					set {_4} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_4} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc4} to ({oss::%player%}/2000)*100
+				set {_4} to "&cnie wykonane! &7(&e%{_proc4}%%%&7)"
+				
+			if {os::stone5::%player%} is true:
+				if {os::stone5::reward::%player%} is false:
+					set {_5} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_5} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc5} to ({oss::%player%}/2500)*100
+				set {_5} to "&cnie wykonane! &7(&e%{_proc5}%%%&7)"
+				
+			if {os::stone6::%player%} is true:
+				if {os::stone6::reward::%player%} is false:
+					set {_6} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_6} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc6} to ({oss::%player%}/3000)*100
+				set {_6} to "&cnie wykonane! &7(&e%{_proc6}%%%&7)"
+				
+			if {os::stone7::%player%} is true:
+				if {os::stone7::reward::%player%} is false:
+					set {_7} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_7} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc7} to ({oss::%player%}/200000)*100
+				set {_7} to "&cnie wykonane! &7(&e%{_proc7}%%%&7)"
+			new Inventory "&6OSIAGNIECIA GORNIKA";
+			"&6OSIAGNIECIA GORNIKA".Inventory.setRow{1};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{1, 1 clock named "&eGornik I" with lore "&eOpis:||- Wykop 500 kamienia!||||&ePostep osiagniecia||- %{_1}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{1, "osiagniecia stone1"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{1, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{2, 1 clock named "&eGornik II" with lore "&eOpis:||- Wykop 1000 kamienia!||||&ePostep osiagniecia||- %{_2}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{2, "osiagniecia stone2"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{2, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{3, 1 clock named "&eGornik III" with lore "&eOpis:||- Wykop 1500 kamienia!||||&ePostep osiagniecia||- %{_3}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{3, "osiagniecia stone3"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{3, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{4, 1 clock named "&eGornik IV" with lore "&eOpis:||- Wykop 2000 kamienia!||||&ePostep osiagniecia||- %{_4}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{4, "osiagniecia stone4"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{4, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{5, 1 clock named "&eGornik V" with lore "&eOpis:||- Wykop 2500 kamienia!||||&ePostep osiagniecia||- %{_5}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{5, "osiagniecia stone5"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{5, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{6, 1 clock named "&eGornik VI" with lore "&eOpis:||- Wykop 3000 kamienia!||||&ePostep osiagniecia||- %{_6}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{6, "osiagniecia stone6"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{6, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setItem{7, 1 clock named "&eGornik VII" with lore "&eOpis:||- Wykop 200000 kamienia!||||&ePostep osiagniecia||- %{_7}%&e"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setCommand{7, "osiagniecia stone7"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.setExecutor{7, "player"};
+			"&6OSIAGNIECIA GORNIKA".Inventory.display{player};
+		if arg-1 is "czas":
+			if {os::czas1::%player%} is true:
+				if {os::czas1::reward::%player%} is false:
+					set {_1} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_1} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc1} to ({os::%player%}/300)*100
+				set {_1} to "&cnie wykonane! &7(&e%{_proc1}%%%&7)"
+				
+			if {os::czas2::%player%} is true:
+				if {os::czas2::reward::%player%} is false:
+					set {_2} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_2} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc2} to ({os::%player%}/1800)*100
+				set {_2} to "&cnie wykonane! &7(&e%{_proc2}%%%&7)"
+				
+			if {os::czas3::%player%} is true:
+				if {os::czas3::reward::%player%} is false:
+					set {_3} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_3} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc3} to ({os::%player%}/14400)*100
+				set {_3} to "&cnie wykonane! &7(&e%{_proc3}%%%&7)"
+				
+			if {os::czas4::%player%} is true:
+				if {os::czas4::reward::%player%} is false:
+					set {_4} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_4} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc4} to ({os::%player%}/28800)*100
+				set {_4} to "&cnie wykonane! &7(&e%{_proc4}%%%&7)"
+				
+			if {os::czas5::%player%} is true:
+				if {os::czas5::reward::%player%} is false:
+					set {_5} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_5} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc5} to ({os::%player%}/57600)*100
+				set {_5} to "&cnie wykonane! &7(&e%{_proc5}%%%&7)"
+				
+			if {os::czas6::%player%} is true:
+				if {os::czas6::reward::%player%} is false:
+					set {_6} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_6} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc6} to ({os::%player%}/86400)*100
+				set {_6} to "&cnie wykonane! &7(&e%{_proc6}%%%&7)"
+				
+			if {os::czas7::%player%} is true:
+				if {os::czas7::reward::%player%} is false:
+					set {_7} to "&awykonane &7(&e100%%&7)||&7Kliknij, aby odebrac nagrode!"
+				else:
+					set {_7} to "&awykonane &7(&e100%%&7)"
+			else:
+				set {_proc7} to ({os::%player%}/172800)*100
+				set {_7} to "&cnie wykonane! &7(&e%{_proc7}%%%&7)"
+			new Inventory "&6OSIAGNIECIA CZASU";
+			"&6OSIAGNIECIA CZASU".Inventory.setRow{1};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{1, 1 clock named "&eCzas I" with lore "&eOpis:||- Badz aktywny na serwerze 5min.||||&ePostep osiagniecia||- %{_1}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{1, "osiagniecia czas1"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{1, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{2, 1 clock named "&eCzas II" with lore "&eOpis:||- Badz aktywny na serwerze 30min.||||&ePostep osiagniecia||- %{_2}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{2, "osiagniecia czas2"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{2, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{3, 1 clock named "&eCzas III" with lore "&eOpis:||- Badz aktywny na serwerze 4godz.||||&ePostep osiagniecia||- %{_3}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{3, "osiagniecia czas3"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{3, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{4, 1 clock named "&eCzas IV" with lore "&eOpis:||- Badz aktywny na serwerze 8godz.||||&ePostep osiagniecia||- %{_3}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{4, "osiagniecia czas4"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{4, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{5, 1 clock named "&eCzas V" with lore "&eOpis:||- Badz aktywny na serwerze 16godz.||||&ePostep osiagniecia||- %{_4}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{5, "osiagniecia czas5"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{5, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{6, 1 clock named "&eCzas VI" with lore "&eOpis:||- Badz aktywny na serwerze 24godz.||||&ePostep osiagniecia||- %{_5}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{6, "osiagniecia czas6"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{6, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.setItem{7, 1 clock named "&eCzas VII" with lore "&eOpis:||- Badz aktywny na serwerze 48godz.||||&ePostep osiagniecia||- %{_6}%&e"};
+			"&6OSIAGNIECIA CZASU".Inventory.setCommand{7, "osiagniecia czas7"};
+			"&6OSIAGNIECIA CZASU".Inventory.setExecutor{7, "player"};
+			"&6OSIAGNIECIA CZASU".Inventory.display{player};
+		if arg-1 is "czas1":
+			if {os::czas1::%player%} is true:
+				if {os::czas1::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS I&7! &9*"
+					set {os::czas1::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas2":
+			if {os::czas2::%player%} is true:
+				if {os::czas2::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS II&7! &9*"
+					set {os::czas2::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas3":
+			if {os::czas3::%player%} is true:
+				if {os::czas3::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS III&7! &9*"
+					set {os::czas3::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas4":
+			if {os::czas4::%player%} is true:
+				if {os::czas4::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS IV&7! &9*"
+					set {os::czas4::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas5":
+			if {os::czas5::%player%} is true:
+				if {os::czas5::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS V&7! &9*"
+					set {os::czas5::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas6":
+			if {os::czas6::%player%} is true:
+				if {os::czas6::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS VI&7! &9*"
+					set {os::czas6::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "czas7":
+			if {os::czas7::%player%} is true:
+				if {os::czas7::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eCZAS VII&7! &9*"
+					set {os::czas7::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+			else:
+				send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone1":
+			if {os::stone1::%player%} is true:
+				if {os::stone1::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK I&7! &9*"
+					set {os::stone1::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone2":
+			if {os::stone2::%player%} is true:
+				if {os::stone2::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK II&7! &9*"
+					set {os::stone2::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone3":
+			if {os::stone3::%player%} is true:
+				if {os::stone3::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK III&7! &9*"
+					set {os::stone3::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone4":
+			if {os::stone4::%player%} is true:
+				if {os::stone4::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK IV&7! &9*"
+					set {os::stone4::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone5":
+			if {os::stone5::%player%} is true:
+				if {os::stone5::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK V&7! &9*"
+					set {os::stone5::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone6":
+			if {os::stone6::%player%} is true:
+				if {os::stone6::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK VI&7! &9*"
+					set {os::stone6::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone7":
+			if {os::stone7::%player%} is true:
+				if {os::stone7::reward::%player%} is false:
+					add 1 diamond pickaxe of efficiency 6 and fortune 3 and unbreaking 3 named "&c&lNAJSZYBSZY KILOF" with lore "&6Najcenniejsza rzecz na serwerze!" to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK VII&7! &9*"
+					broadcast "&9* &7Oraz otrzymal &ekilof 6/3/3 &9*"
+					set {os::stone7::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+					
+					
+					
+		if arg-1 is "koxy1":
+			if {os::koxy1::%player%} is true:
+				if {os::koxy1::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS I&7! &9*"
+					set {os::koxy1::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy2":
+			if {os::koxy2::%player%} is true:
+				if {os::koxy2::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS II&7! &9*"
+					set {os::koxy2::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy3":
+			if {os::koxy3::%player%} is true:
+				if {os::koxy3::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS III&7! &9*"
+					set {os::koxy3::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy4":
+			if {os::koxy4::%player%} is true:
+				if {os::koxy4::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS IV&7! &9*"
+					set {os::koxy4::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy5":
+			if {os::koxy5::%player%} is true:
+				if {os::koxy5::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS V&7! &9*"
+					set {os::koxy5::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy6":
+			if {os::koxy6::%player%} is true:
+				if {os::koxy6::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS VI&7! &9*"
+					set {os::koxy6::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "koxy7":
+			if {os::koxy7::%player%} is true:
+				if {os::koxy7::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGRUBAS VII&7! &9*"
+					set {os::koxy7::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+			else:
+				send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+
+
+				
+		if arg-1 is "join1":
+			if {os::join1::%player%} is true:
+				if {os::join1::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY I&7! &9*"
+					set {os::join1::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join2":
+			if {os::join2::%player%} is true:
+				if {os::join2::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY II&7! &9*"
+					set {os::join2::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join3":
+			if {os::join3::%player%} is true:
+				if {os::join3::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY III&7! &9*"
+					set {os::join3::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join4":
+			if {os::join4::%player%} is true:
+				if {os::join4::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY IV&7! &9*"
+					set {os::join4::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join5":
+			if {os::join5::%player%} is true:
+				if {os::join5::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY V&7! &9*"
+					set {os::join5::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join6":
+			if {os::join6::%player%} is true:
+				if {os::join6::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY VI&7! &9*"
+					set {os::join6::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "join7":
+			if {os::join7::%player%} is true:
+				if {os::join7::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eODWIEDZINY VII&7! &9*"
+					set {os::join7::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+			else:
+				send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone1":
+			if {os::stone1::%player%} is true:
+				if {os::stone1::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK I&7! &9*"
+					set {os::stone1::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone2":
+			if {os::stone2::%player%} is true:
+				if {os::stone2::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK II&7! &9*"
+					set {os::stone2::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone3":
+			if {os::stone3::%player%} is true:
+				if {os::stone3::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK III&7! &9*"
+					set {os::stone3::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone4":
+			if {os::stone4::%player%} is true:
+				if {os::stone4::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK IV&7! &9*"
+					set {os::stone4::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone5":
+			if {os::stone5::%player%} is true:
+				if {os::stone5::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK V&7! &9*"
+					set {os::stone5::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone6":
+			if {os::stone6::%player%} is true:
+				if {os::stone6::reward::%player%} is false:
+					give 1 diamond to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK VI&7! &9*"
+					set {os::stone6::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+		if arg-1 is "stone7":
+			if {os::stone7::%player%} is true:
+				if {os::stone7::reward::%player%} is false:
+					add 1 diamond pickaxe of efficiency 6 and fortune 3 and unbreaking 3 named "&c&lNAJSZYBSZY KILOF" with lore "&6Najcenniejsza rzecz na serwerze!" to player
+					broadcast "&9* &7Gracz &e%player% &7zdobyl osiagniece &eGORNIK VII&7! &9*"
+					broadcast "&9* &7Oraz otrzymal &ekilof 6/3/3 &9*"
+					set {os::stone7::reward::%player%} to true
+				else:
+					send "&cBlad: &7Odebrales juz nadrode za to osiagniece!"
+on join:
+	if {monetyCzasu::%player%} is not set:
+		set {monetyCzasu::%player%} to 0
+on first join:
+	set {monetyCzasu::%player%} to 0
+every 1 seconds:
+	loop all players:
+		if {os::%loop-player%} > 299:
+			if {os::czas1::%loop-player%} is false:
+				set {os::czas1::%loop-player%} to true
+			if {os::czas1::%loop-player%} is not set:
+				set {os::czas1::%loop-player%} to true
+		if {os::%loop-player%} > 1799:
+			if {os::czas2::%loop-player%} is false:
+				set {os::czas2::%loop-player%} to true
+			if {os::czas2::%loop-player%} is not set:
+				set {os::czas2::%loop-player%} to true
+		if {os::%loop-player%} > 14399:
+			if {os::czas3::%loop-player%} is false:
+				set {os::czas3::%loop-player%} to true
+			if {os::czas3::%loop-player%} is not set:
+				set {os::czas3::%loop-player%} to true
+		if {os::%loop-player%} > 28799:
+			if {os::czas4::%loop-player%} is false:
+				set {os::czas4::%loop-player%} to true
+			if {os::czas4::%loop-player%} is not set:
+				set {os::czas4::%loop-player%} to true
+		if {os::%loop-player%} > 57599:
+			if {os::czas5::%loop-player%} is false:
+				set {os::czas5::%loop-player%} to true
+			if {os::czas5::%loop-player%} is not set:
+				set {os::czas5::%loop-player%} to true
+		if {os::%loop-player%} > 86399:
+			if {os::czas6::%loop-player%} is false:
+				set {os::czas6::%loop-player%} to true
+			if {os::czas6::%loop-player%} is not set:
+				set {os::czas6::%loop-player%} to true
+		if {os::%loop-player%} > 86399:
+			if {os::czas7::%loop-player%} is false:
+				set {os::czas7::%loop-player%} to true
+			if {os::czas7::%loop-player%} is not set:
+				set {os::czas7::%loop-player%} to true
+		if {unlock::%loop-player%} is false:
+			if {minutes::%loop-player%} > 9:
+				set {unlock::%loop-player%} to true
+				send "&aPisanie na chacie zostalo odblokowane." to loop-player
+		add 1 to {seconds::%loop-player%}
+		add 1 to {os::%loop-player%}
+		if {seconds::%loop-player%} > 59:
+			remove 60 from {seconds::%loop-player%}
+			add 1 to {minutes::%loop-player%}
+		if {minutes::%loop-player%} > 59:
+			add 1 to {monetyCzasu::%loop-player%}
+			remove 60 from {minutes::%loop-player%}
+			add 1 to {hours::%loop-player%}
+		if {hours::%loop-player%} > 23:
+			add 1 to {days::%loop-player%}
+			remove 24 from {hours::%loop-player%}
+command /czas [<text>]:
+	trigger:
+		if {hours::%player%} is not set:
+			set {hours::%player%} to 0
+		if {seconds::%player%} is not set:
+			set {seconds::%player%} to 0
+		if {minutes::%player%} is not set:
+			set {minutes::%player%} to 0
+		if {days::%player%} is not set:
+			set {days::%player%} to 0
+		arg 1 is not set:
+			if {days::%player%} > 0:
+				if {hours::%player%} > 0:
+					if {minutes::%player%} > 0:
+						if {seconds::%player%} > 0:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{hours::%player%}%godz. %{minutes::%player%}%min. %{seconds::%player%}%sek."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{hours::%player%}%godz. %{minutes::%player%}%min."
+							stop
+					else:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{hours::%player%}%godz."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{hours::%player%}%godz. %{seconds::%player%}%sek."
+							stop
+				else:
+					if {minutes::%player%} is 0:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni"
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{seconds::%player%}%sek."
+							stop
+					else:
+						if {seconds::%player%} > 0:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{minutes::%player%}%min. %{seconds::%player%}%sek."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{days::%player%}%dni %{minutes::%player%}%min."
+							stop
+			else:
+				if {hours::%player%} is 0:
+					if {minutes::%player%} is 0:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 null"
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{seconds::%player%}%sek."
+							stop
+					else:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 %{minutes::%player%}%min."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{minutes::%player%}%min. %{seconds::%player%}%sek."
+							stop
+				else:
+					if {minutes::%player%} is 0:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 %{hours::%player%}%godz."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{hours::%player%}%godz. %{seconds::%player%}%sek."
+							stop
+					else:
+						if {seconds::%player%} is 0:
+							send "&cTwoj czas na serwerze:&6 %{hours::%player%}%godz. %{minutes::%player%}%min."
+							stop
+						else:
+							send "&cTwoj czas na serwerze:&6 %{hours::%player%}%godz. %{minutes::%player%}%min. %{seconds::%player%}%sek."
+							stop
+on chat:
+	if player has permission "time.admin":
+		stop
+	if {unlock::%player%} is true:
+		stop
+	set {min2::%player%} to 9
+	set {sec2::%player%} to 60
+	remove {minutes::%player%} from {min2::%player%}
+	remove {seconds::%player%} from {sec2::%player%}
+	if {min2::%player%} > 0:
+		if {sec2::%player%} > 0:
+			cancel event
+			send "&cAby odblokokowac chat zagraj jeszcze: &6%{min2::%player%}%min. %{sec2::%player%}%sek."
+			stop
+		else:
+			cancel event
+			send "&cAby odblokokowac chat zagraj jeszcze: &6%{min2::%player%}%min."
+			stop
+	else:
+		cancel event
+		send "&cAby odblokokowac chat zagraj jeszcze: &6%{sec2::%player%}%sek."
+		stop
+on eat:
+	if event-item is golden apple:1:
+		add 1 to {ossss::%player%}
+		if {ossss::%player%} > 3-1:
+			if {os::koxy1::%player%} is false:
+				set {os::koxy1::%player%} to true
+			if {os::koxy1::%player%} is not set:
+				set {os::koxy1::%player%} to true
+		if {ossss::%player%} > 6-1:
+			if {os::koxy2::%player%} is false:
+				set {os::koxy2::%player%} to true
+			if {os::koxy2::%player%} is not set:
+				set {os::koxy2::%player%} to true
+		if {ossss::%player%} > 9-1:
+			if {os::koxy3::%player%} is false:
+				set {os::koxy3::%player%} to true
+			if {os::koxy3::%player%} is not set:
+				set {os::koxy3::%player%} to true
+		if {ossss::%player%} > 12-1:
+			if {os::koxy4::%player%} is false:
+				set {os::koxy4::%player%} to true
+			if {os::koxy4::%player%} is not set:
+				set {os::koxy4::%player%} to true
+		if {ossss::%player%} > 15-1:
+			if {os::koxy5::%player%} is false:
+				set {os::koxy15::%player%} to true
+			if {os::koxy5::%player%} is not set:
+				set {os::koxy5::%player%} to true
+		if {ossss::%player%} > 18-1:
+			if {os::koxy6::%player%} is false:
+				set {os::koxy6::%player%} to true
+			if {os::koxy6::%player%} is not set:
+				set {os::koxy6::%player%} to true
+		if {ossss::%player%} > 21-1:
+			if {os::koxy7::%player%} is false:
+				set {os::koxy7::%player%} to true
+			if {os::koxy7::%player%} is not set:
+				set {os::koxy7::%player%} to true
+on join:
+	add 1 to {osss::%player%}
+	if {osss::%player%} > 4:
+		if {os::join1::%player%} is false:
+			set {os::join1::%player%} to true
+		if {os::join1::%player%} is not set:
+			set {os::join1::%player%} to true
+	if {osss::%player%} > 14:
+		if {os::join2::%player%} is false:
+			set {os::join2::%player%} to true
+		if {os::join2::%player%} is not set:
+			set {os::join2::%player%} to true
+	if {osss::%player%} > 24:
+		if {os::join3::%player%} is false:
+			set {os::join3::%player%} to true
+		if {os::join3::%player%} is not set:
+			set {os::join3::%player%} to true
+	if {osss::%player%} > 34:
+		if {os::join4::%player%} is false:
+			set {os::join4::%player%} to true
+		if {os::join4::%player%} is not set:
+			set {os::join4::%player%} to true
+	if {osss::%player%} > 44:
+		if {os::join5::%player%} is false:
+			set {os::join5::%player%} to true
+		if {os::join5::%player%} is not set:
+			set {os::join5::%player%} to true
+	if {osss::%player%} > 54:
+		if {os::join6::%player%} is false:
+			set {os::join6::%player%} to true
+		if {os::join6::%player%} is not set:
+			set {os::join6::%player%} to true
+	if {osss::%player%} > 99:
+		if {os::join7::%player%} is false:
+			set {os::join7::%player%} to true
+		if {os::join7::%player%} is not set:
+			set {os::join7::%player%} to true
+on break:
+	if event-block is stone or cobble:
+		add 1 to {oss::%player%}
+	if {oss::%player%} > 499:
+		if {os::stone1::%player%} is false:
+			set {os::stone1::%player%} to true
+		if {os::stone1::%player%} is not set:
+			set {os::stone1::%player%} to true
+	if {oss::%player%} > 999:
+		if {os::stone2::%player%} is false:
+			set {os::stone2::%player%} to true
+		if {os::stone2::%player%} is not set:
+			set {os::stone2::%player%} to true
+	if {oss::%player%} > 1499:
+		if {os::stone3::%player%} is false:
+			set {os::stone3::%player%} to true
+		if {os::stone3::%player%} is not set:
+			set {os::stone3::%player%} to true
+	if {oss::%player%} > 1999:
+		if {os::stone4::%player%} is false:
+			set {os::stone4::%player%} to true
+		if {os::stone4::%player%} is not set:
+			set {os::stone4::%player%} to true
+	if {oss::%player%} > 2499:
+		if {os::stone5::%player%} is false:
+			set {os::stone5::%player%} to true
+		if {os::stone5::%player%} is not set:
+			set {os::stone5::%player%} to true
+	if {oss::%player%} > 2999:
+		if {os::stone6::%player%} is false:
+			set {os::stone6::%player%} to true
+		if {os::stone6::%player%} is not set:
+			set {os::stone6::%player%} to true
+	if {oss::%player%} > 199999:
+		if {os::stone7::%player%} is false:
+			set {os::stone7::%player%} to true
+		if {os::stone7::%player%} is not set:
+			set {os::stone7::%player%} to true
+command /monetydaj [<text>]:
+	trigger:
+		set {monetyCzasu::%player%} to 9999
+command /monety [<text>]:
+	trigger:
+		if arg-1 is not set:
+			clear {buyClick::%player%}
+			set {_monetyCzasu} to ({minutes::%player%}/60)*100
+			if {_monetyCzasu} > -1:
+				set {_znaczki} to "&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 9:
+				set {_znaczki} to "&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 19:
+				set {_znaczki} to "&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 29:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 39:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 49:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 59:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 69:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 79:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 89:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜"
+			if {_monetyCzasu} > 99:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜"
+			new Inventory "&6MONETY CZASU";
+			"&6MONETY CZASU".Inventory.setRow{2};
+			"&6MONETY CZASU".Inventory.setItem{5, 1 clock named "&eMonety Czasu" with lore " &9* &7Posiadasz &e%{monetyCzasu::%player%}% &7monet czasu!|| &9* &7Postep do kolejnej monety: &e%{_monetyCzasu}%%%&7.||              &7%{_znaczki}%"};
+			"&6MONETY CZASU".Inventory.setCommand{5, "monety informacje"};
+			"&6MONETY CZASU".Inventory.setExecutor{5, "player"};
+			"&6MONETY CZASU".Inventory.setItem{13, 1 ender chest named "&ePowiekszony &5EnderChest" with lore "&9* &fKliknij, aby przejsc dalej!"};
+			"&6MONETY CZASU".Inventory.setCommand{13, "monety powender"};
+			"&6MONETY CZASU".Inventory.setExecutor{13, "player"};
+			"&6MONETY CZASU".Inventory.setItem{15, 1 chest named "&ePrzydatne itemy!" with lore "&9* &fKliknij, aby przejsc dalej!"};
+			"&6MONETY CZASU".Inventory.setCommand{15, "monety itemy"};
+			"&6MONETY CZASU".Inventory.setExecutor{15, "player"};
+			"&6MONETY CZASU".Inventory.display{player};
+		if arg-1 is "informacje":
+			send "&9* &7Dostaje sie &e1 monete czasowa &7co 1h!"
+			send "&9* &7Za &emonety&7, mozesz kupic przydatne rzeczy oraz powiekszony enderchest!"
+		if arg-1 is "powender":
+			set {_monetyCzasu} to ({minutes::%player%}/60)*100
+			if {_monetyCzasu} > -1:
+				set {_znaczki} to "&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 9:
+				set {_znaczki} to "&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 19:
+				set {_znaczki} to "&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 29:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 39:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 49:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 59:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 69:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 79:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 89:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜"
+			if {_monetyCzasu} > 99:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜"
+			if {monetyCzasu::%player%} > -1:
+				set {_ender} to "&amozesz kupic"
+			else:
+				set {_ender} to "&cnie mozesz kupic"
+			new Inventory "&6MONETY CZASU &7(ENDERCHEST)";
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setRow{2};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setItem{5, 1 clock named "&eMonety Czasu" with lore " &9* &7Posiadasz &e%{monetyCzasu::%player%}% &7monet czasu!|| &9* &7Postep do kolejnej monety: &e%{_monetyCzasu}%%%&7.||              &7%{_znaczki}%"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setCommand{5, "monety informacje"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setExecutor{5, "player"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setItem{13, 1 ender chest named "&ePowiekszony &5EnderChest" with lore " &9* &7Zakup kosztuje &e0 monet czasu&7.|| &9* &7Status: %{_ender}%!"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setCommand{13, "monety enderchestReq"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.setExecutor{13, "player"};
+			"&6MONETY CZASU &7(ENDERCHEST)".Inventory.display{player};
+		if arg-1 is "itemy":
+			set {_monetyCzasu} to ({minutes::%player%}/60)*100
+			if {_monetyCzasu} > -1:
+				set {_znaczki} to "&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 9:
+				set {_znaczki} to "&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 19:
+				set {_znaczki} to "&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 29:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 39:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 49:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 59:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 69:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 79:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜&c⬜"
+			if {_monetyCzasu} > 89:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&c⬜"
+			if {_monetyCzasu} > 99:
+				set {_znaczki} to "&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜&a⬜"
+			if {monetyCzasu::%player%} > 72-1:
+				set {_6/3/3} to "&amozesz kupic"
+			else:
+				set {_6/3/3} to "&cnie mozesz kupic"
+			if {monetyCzasu::%player%} > 12-1:
+				set {_vouchervip} to "&amozesz kupic"
+			else:
+				set {_vouchervip} to "&cnie mozesz kupic"
+			if {monetyCzasu::%player%} > 5-1:
+				set {_voucherturbo} to "&amozesz kupic"
+			else:
+				set {_voucherturbo} to "&cnie mozesz kupic"
+			new Inventory "&6MONETY CZASU &7(ITEMY)";
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setRow{2};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setItem{5, 1 clock named "&eMonety Czasu" with lore " &9* &7Posiadasz &e%{monetyCzasu::%player%}% &7monet czasu!|| &9* &7Postep do kolejnej monety: &e%{_monetyCzasu}%%%&7.||              &7%{_znaczki}%"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setCommand{5, "monety informacje"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setExecutor{5, "player"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setItem{10, 1 diamond pickaxe named "&eKilof 6/3/3" with lore " &9* &7Zakup kosztuje &e72 monet czasu&7.|| &9* &7Status: %{_6/3/3}%!"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setCommand{10, "monety kilofreq"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setExecutor{10, "player"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setItem{11, 1 book named "&c&lVOUCHER NA VIP'a" with lore " &9* &7Voucher na: &eVIP, 1edycja|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e1|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!|||| &9* &7Cena: &e12 monet&7|| &9* &7Status: &e%{_vouchervip}%!"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setCommand{11, "monety vouchervipreq"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setExecutor{11, "player"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setItem{12, 1 book named "&c&lVOUCHER NA TURBODROP" with lore " &9* &7Voucher na: &eTURBODROP, 5min.|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e2|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!|||| &9* &7Cena: &e5 monet&7|| &9* &7Status: &e%{_voucherturbo}%!"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setCommand{12, "monety voucherturboreq"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.setExecutor{12, "player"};
+			"&6MONETY CZASU &7(ITEMY)".Inventory.display{player};
+		if arg-1 is "napewno":
+			new Inventory "&6JESTES PEWIEN?";
+			"&6JESTES PEWIEN?".Inventory.setRow{3};
+			"&6JESTES PEWIEN?".Inventory.setItem{1, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{1, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{1, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{2, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{2, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{2, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{3, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{3, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{3, "player"};
+
+			"&6JESTES PEWIEN?".Inventory.setItem{10, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{10, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{10, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{11, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{11, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{11, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{12, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{12, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{12, "player"};
+
+			"&6JESTES PEWIEN?".Inventory.setItem{19, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{19, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{19, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{20, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{20, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{20, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{21, 1 emerald block named "&2KLIKNIJ, ABY ZAKUPIC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{21, "monety zakupto"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{21, "player"};
+
+
+			"&6JESTES PEWIEN?".Inventory.setItem{7, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{7, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{7, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{8, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{8, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{8, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{9, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{9, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{9, "player"};
+
+			"&6JESTES PEWIEN?".Inventory.setItem{16, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{16, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{16, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{17, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{17, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{17, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{18, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{18, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{18, "player"};
+
+			"&6JESTES PEWIEN?".Inventory.setItem{25, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{25, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{25, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{26, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{26, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{26, "player"};
+			"&6JESTES PEWIEN?".Inventory.setItem{27, 1 redstone block named "&cKLIKNIJ, ABY ZREZYGNOWAC!"};
+			"&6JESTES PEWIEN?".Inventory.setCommand{27, "monety jednaknie"};
+			"&6JESTES PEWIEN?".Inventory.setExecutor{27, "player"};
+			"&6JESTES PEWIEN?".Inventory.display{player};
+		if arg-1 is "jednaknie":
+			execute player command "monety"
+		if arg-1 is "kilofReq":
+			execute player command "monety napewno"
+			set {buyClick::%player%} to "kilof"
+		if arg-1 is "voucherVipReq":
+			execute player command "monety napewno"
+			set {buyClick::%player%} to "voucherVip"
+		if arg-1 is "voucherTurboReq":
+			execute player command "monety napewno"
+			set {buyClick::%player%} to "voucherTurbo"
+		if arg-1 is "enderchestReq":
+			execute player command "monety napewno"
+			set {buyClick::%player%} to "enderchest"
+		if arg-1 is "zakupto":
+			if {buyClick::%player%} is "kilof":
+				execute player command "monety kilof"
+				clear {buyClick::%player%}
+			if {buyClick::%player%} is "voucherVip":
+				execute player command "monety vouchervip"
+				clear {buyClick::%player%}
+			if {buyClick::%player%} is "voucherTurbo":
+				execute player command "monety voucherturbo"
+				clear {buyClick::%player%}
+			if {buyClick::%player%} is "enderchest":
+				execute player command "monety enderchest"
+				clear {buyClick::%player%}
+		if arg-1 is "voucherturbo":
+			if {monetyCzasu::%player%} > 5-1:
+				add 1 book named "&c&lVOUCHER NA TURBODROP" with lore " &9* &7Voucher na: &eTURBODROP, 5min.|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e2|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!" to player
+				send "&aPomyslnie zakupiono voucher na turbodrop!"
+				remove 5 from {monetyCzasu::%player%}
+			else:
+				send "&cBlad: &7Nie posiadasz 5 monet."
+			"&6MONETY CZASU &7(ITEMY)".Inventory.display{player};
+		if arg-1 is "kilof":
+			if {monetyCzasu::%player%} > 72-1:
+				add 1 diamond pickaxe of efficiency 6 and fortune 3 and unbreaking 3 named "&c&lNAJSZYBSZY KILOF" with lore "&6Najcenniejsza rzecz na serwerze!" to player
+				send "&aPomyslnie zakupiono kilof 6/3/3."
+				remove 72 from {monetyCzasu::%player%}
+				clear {buyClick::%player%}
+			else:
+				send "&cBlad: &7Nie posiadasz 72 monet czasu."
+		if arg-1 is "vouchervip":
+			if {monetyCzasu::%player%} > 12-1:
+				add 1 book named "&c&lVOUCHER NA VIP'a" with lore " &9* &7Voucher na: &eVIP, 1edycja|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e1|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!" to player
+				send "&aPomyslnie zakupiono voucher na vip'a!"
+				remove 12 from {monetyCzasu::%player%}
+			else:
+				send "&cBlad: &7Nie posiadasz 12 monet czasu."
+		if arg-1 is "enderchest":
+			if {monetyCzasu::%player%} > 24-1:
+				send "&aPomyslnie zakupiono powiekszony enderchest!"
+				remove 24 from {monetyCzasu::%player%}
+			else:
+				send "&cBlad: &7Nie posiadasz 24 monet czasu."
+on rightclick:
+	if player's tool is book named "&c&lVOUCHER NA TURBODROP" with lore " &9* &7Voucher na: &eTURBODROP, 5min.|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e2|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!":
+		remove 1 book named "&c&lVOUCHER NA TURBODROP" with lore " &9* &7Voucher na: &eTURBODROP, 5min.|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e2|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!" from player
+		execute console command "turbo drop %player% 5m"
+		broadcast "&2Gracz &2%player%&2, uzyl vouchera na &aTURBODROP&2!"
+	if player's tool is book named "&c&lVOUCHER NA VIP'a" with lore " &9* &7Voucher na: &eVIP, 1edycja|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e1|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!":
+		remove 1 book named "&c&lVOUCHER NA VIP'a" with lore " &9* &7Voucher na: &eVIP, 1edycja|| &9* &7KOD: &e&k0a-_0a-_0a-_0a-_|| &9* &7ID Vouchera: &e1|||| &9* &7Voucher aktywujesz na: &ehttp://voucher.ct8.pl|| &9* &7Voucher &4&lnie &7jest aktywowany!|| &9* &fKliknij, aby odkryc kod!" from player
+		execute console command "pex user %player% group set vip"
+		broadcast "&2Gracz &2%player%&2, uzyl vouchera na &aVIP'a&2!"

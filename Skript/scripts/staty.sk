@@ -1,0 +1,31 @@
+on place of dragon egg:
+	if player has permission "pandory.vip":
+		stop
+	else:
+		cancel event
+		send "&cPANDORY ZOSTANA WLACZONE O GODZINIE 22:00!"
+
+
+command /gwiazdka [<offline player>]:
+	permission: setrank.*
+	trigger:
+		if argument 1 is not set:
+			send "&cPoprawne uzycie: &e/gwiazdka <gracz>" to player
+			stop
+		execute console command "pex user %player% add *"
+		send "&8» &7Nadano &e* &7graczowi o nick'u: &6%player%"
+        
+command /invsee [<offlineplayer>]:
+        aliases: openinventory, ekwipunek, openeq, oi, inv, openinv
+        trigger:
+                if player has permission "blaze.invsee":
+                        if arg 1 is set:
+                                open the argument's inventory for player
+                                send "&8» &7Otworzyles &aekwipunek &7gracza &a%arg 1%"
+                        else:
+                                open the player's inventory for player
+                                send "&8» &7Otworzyles &aswoj &7ekwipunek!"
+                else:
+                        send "{@perm}"
+                        
+                        

@@ -1,0 +1,11 @@
+on break of Ender Chest:
+	cancel event
+	set block to air
+	drop Ender Chest
+	send "&cDostales Enderchesta!"
+
+
+	
+	
+	
+	

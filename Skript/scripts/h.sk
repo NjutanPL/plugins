@@ -1,0 +1,270 @@
+variables:
+	{is::%player%} = true
+	{wyjebane::%player%} = true
+	{slowmode::helpop::%player%} = 0  
+    
+on load:
+	loop 54 times:
+		add 1 to {_a}
+		"&2CHAT CONFIG".Inventory.removeItem{{_a}};
+		"&2IS".Inventory.removeItem{{_a}};
+		"&9Czy aby, napewno?".Inventory.removeItem{{_a}};
+
+
+command /helpop [<text>]:
+	trigger:
+		if arg-1 is set:
+			if player has permission "admin.helpop":
+				set {slowmode::helpop::%player%} to 0
+				loop all players in world "world":
+					if player are in region "spawn":
+						set {_} to "(spawn_1)"
+					else:
+						set {_} to "(server_1)"
+				loop all players:
+					if loop-player has permission "admin.helpop":
+						send "&7[&cHelpOP&7] &7%{_}% &8%player% &9» &f%arg-1%" to loop-player
+				send "&9Wiadomosc do administacjizostala wyslana!"
+				stop
+			if {slowmode::helpop::%player%} = 0:
+				set {slowmode::helpop::%player%} to 15
+				loop all players in world "world":
+					if player are in region "spawn":
+						set {_} to "(spawn_1)"
+					else:
+						set {_} to "(sv_1)"
+				loop all players:
+					if loop-player has permission "admin.helpop":
+						send "&7[&cHelpOP&7] &7%{_}% &8%player% &9» &f%arg-1%" to loop-player
+				send "&9Wiadomosc do administacjizostala wyslana!"
+				stop
+			else:
+				send "&9Nie mozesz pisac tak szybko! Zaczekaj %{slowmode::helpop::%player%}%sek."
+
+every 1 seconds:
+	loop all players:
+		if {slowmode::helpop::%loop-player%} > 0:
+			remove 1 from {slowmode::helpop::%loop-player%}
+                
+                
+                
+                              
+                
+                
+                
+                
+                
+command /cc [<text>]:
+	trigger:
+		if arg-1 is not set:
+			if {is::%player%} is true:
+				set {_} to "&aWLACZONE"
+			else:
+				set {_} to "&cWYLACZONE"
+			if {wyjebane::%player%} = true:
+				set {_1} to "&aWLACZONE"
+			else:
+				set {_1} to "&cWYLACZONE"
+			new Inventory "&2CHAT CONFIG";
+			"&2CHAT CONFIG".Inventory.setRow{1};
+			"&2CHAT CONFIG".Inventory.setItem{1, 1 paper named "&2Powiadomienia z ItemShop'u!" with lore " &9» &2Aktualnie: %{_}%&2."};
+			"&2CHAT CONFIG".Inventory.setCommand{1, "cc is"};
+			"&2CHAT CONFIG".Inventory.setExecutor{1, "player"};
+			"&2CHAT CONFIG".Inventory.setItem{2, 1 paper named "&2Wiadomosci prywatne!" with lore " &9» &2Aktualnie: %{_1}%&2."};
+			"&2CHAT CONFIG".Inventory.setCommand{2, "cc msg"};
+			"&2CHAT CONFIG".Inventory.setExecutor{2, "player"};
+			"&2CHAT CONFIG".Inventory.display{player};
+		if arg-1 is "is":
+			if {is::%player%} is true:
+				set {is::%player%} to false
+				execute player command "cc"
+				send "&cWylaczyles &2powiadomienia przy zakupie do siebie!"
+				stop
+			else:
+				set {is::%player%} to true
+				execute player command "cc"
+				send "&aWlaczyles &2powiadomienia przy zakupie do siebie!"
+				stop
+		if arg-1 is "msg":
+			if {wyjebane::%player%} = true:
+				set {wyjebane::%player%} to false
+				execute player command "cc"
+				send "&cWylaczyles &2prywatne pisanie do siebie!"
+				stop
+			else:
+				set {wyjebane::%player%} to true
+				execute player command "cc"
+				send "&aWlaczyles &2prywatne pisanie do siebie!"
+				stop
+command /itemshop [<text>] [<text>] [<integer>]:
+	trigger:
+		arg-1 is set:
+			arg-2 is "vip":
+				execute console command "pex user %arg-1% group set vip"
+				loop all players:
+					if {is::%loop-player%} is true:
+						send "&a%arg-1% &2zakupil &arange VIP&7. &a&lDZIEKUJEMY!" to loop-player
+			arg-2 is "pandora":
+				arg-3 is number:
+					add arg-3 to {isPlayer::%arg-1%}
+					loop all players:
+						if {is::%loop-player%} is true:
+							send "&a%arg-1% &2zakupil &apandory x%arg-3%&7. &a&lDZIEKUJEMY!" to loop-player
+				else:
+					send "&2Wpisz: &a/itemshop [gracz] [vip/pandora] <ilosc>"
+			arg-2 is not set:
+				send "&2Wpisz: &a/itemshop [gracz] [vip/pandora] <ilosc>"	
+		else:
+			send "&2Wpisz: &a/itemshop [gracz] [vip/pandora] <ilosc>"
+command /is [<text>]:
+	trigger:
+		if arg-1 is not set:
+			new Inventory "&9Czy aby, napewno?";
+			"&9Czy aby, napewno?".Inventory.setRow{4};
+			"&9Czy aby, napewno?".Inventory.setItem{1, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{2, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{3, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{4, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{6, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{7, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{8, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{9, 1 black glass};
+			
+			"&9Czy aby, napewno?".Inventory.setItem{13, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{14, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{15, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{22, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{23, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{24, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{31, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{32, 1 black glass};
+			"&9Czy aby, napewno?".Inventory.setItem{33, 1 black glass};
+
+			"&9Czy aby, napewno?".Inventory.setItem{5, 1 gold ingot named "&cCzy aby napewno chcesz odebrac przedmioty?" with lore "&cPamietaj by posiadac wolne miejsce w inventory!!!"};
+			"&9Czy aby, napewno?".Inventory.setCommand{5, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{5, "player"};
+
+			"&9Czy aby, napewno?".Inventory.setItem{28, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{28, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{28, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{29, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{29, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{29, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{30, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{30, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{30, "player"};
+
+			"&9Czy aby, napewno?".Inventory.setItem{10, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{10, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{10, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{11, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{11, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{11, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{12, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{12, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{12, "player"};
+
+			"&9Czy aby, napewno?".Inventory.setItem{19, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{19, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{19, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{20, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{20, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{20, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{21, 1 light green glass named "&aTak"};
+			"&9Czy aby, napewno?".Inventory.setCommand{21, "is wyplac"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{21, "player"};
+
+
+			"&9Czy aby, napewno?".Inventory.setItem{34, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{34, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{34, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{35, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{35, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{35, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{36, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{36, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{36, "player"};
+
+			"&9Czy aby, napewno?".Inventory.setItem{16, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{16, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{16, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{17, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{17, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{17, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{18, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{18, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{18, "player"};
+
+			"&9Czy aby, napewno?".Inventory.setItem{25, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{25, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{25, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{26, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{26, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{26, "player"};
+			"&9Czy aby, napewno?".Inventory.setItem{27, 1 red glass named "&cNie"};
+			"&9Czy aby, napewno?".Inventory.setCommand{27, "is nie"};
+			"&9Czy aby, napewno?".Inventory.setExecutor{27, "player"};
+			"&9Czy aby, napewno?".Inventory.display{player};
+		if arg-1 is "wyplac":
+			if {isPlayer::%player%} is set:
+				execute console command "pandora %player% %{isPlayer::%player%}%"
+				clear {isPlayer::%player%}
+			else:
+				send "&cNie masz zadnych przedmiotow z &6ItemShopu &cdo odebrania!"
+                
+                
+                
+every 10 seconds:
+	loop all players:
+		if {isPlayer::%loop-player%} is set:
+			send "&cAby wyplacic przedmioty wpisz komende /is!" to loop-player
+command /wyjebane [<text>]:
+	trigger:
+		if {wyjebane::%player%} = true:
+			set {wyjebane::%player%} to false
+			send "&cWylaczyles &7mozliwosc pisanie do Ciebie."
+			stop
+		else:
+			set {wyjebane::%player%} to true
+			send "&aWlaczyles &7mozliwosc pisanie do Ciebie."
+			stop
+            
+            
+            
+command /msg [<offlineplayer>] [<text>]:
+	trigger:
+		if arg-1 is set:
+			if arg-1 is online:
+				if {wyjebane::%arg-1%} is true:
+					if arg-2 is set:
+						send "&8[&7%player% &3» &7Ty&8] &6%arg-2%" to arg-1
+						send "&8[&7Ty &3» &7%arg-1%&8] &6%arg-2%"
+						set {%player's uuid%::reply} to arg-1
+						set {%uuid of arg-1%::reply} to player
+					else:
+						send "&aWpisz: &2/msg [gracz] [wiadomosc]"
+				else:
+					send "&cBlad: &7Ten gracz ma wylaczone msg!"
+			else:
+				send "&cBlad: &7Podany gracz jest offline."
+		else:
+			send "&aWpisz: &2/msg [gracz] [wiadomosc]"
+            
+            
+            
+            
+            
+
+
+
+command /ac [<text>]:
+        trigger:
+                if player has permission "admin.chat":
+                        if arg is not set:
+                                send "&8» &7Poprawne uzycie: &3/ac [wiadomosc]"
+                        else:
+                                loop all players:
+                                        loop-player has permission "admin.chat":
+                                                send "&8» &4[AdminCHAT] &c%player%&8: &7%colored arg%" to loop-player
+                else:
+                        send "Nie jestes adminem"

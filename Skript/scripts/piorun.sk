@@ -1,0 +1,3 @@
+on death of player:
+    strike lightning effect at the player
+    execute console command "tb msg %player% &c&lZDEDALES :("

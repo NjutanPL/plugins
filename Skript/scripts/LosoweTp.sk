@@ -1,0 +1,65 @@
+﻿options:
+    xMin: -1500
+    xMax: 1500
+    zMin: -1500
+    zMax: 1500
+    yMin: 90
+    yMax: 120
+    world: world
+#/\Nazwa swiatu/\#
+ 
+#Bloki teleportacji
+    blok1: sponge
+#Wiadomosc ostrzegajaca
+    danmsg: &7Teleportacja nastapi za chwile! &7Uwazaj, mozesz zginac!
+#Wiadomosc informujaca
+    infmsg: &7Zostales przeteleprtoway na &7x: &6%{_targetx}%&7, z:&6 %{_targetz}%, &7Jestes niesmiertelny na 10 sekund!
+    infmsg1: &7Wszedłeś na serwer po raz pierwszy! &7Jestes niesmiertelny na 30 sekund.
+#Tag skryptu
+    tag: &6➽
+#Efekty po tp  
+    #Szybkosc
+    efekt1: speed
+    sila1: 3
+    czas1: 30
+    #Mdlosci
+    efekt2: nausea
+    sila2: 7
+    czas2: 3
+    #Ciemnosc
+    efekt3: blindness
+    sila3: 6
+    czas3: 3
+    #Szybkosc
+    efekt10: speed
+    sila10: 3
+    czas10: 120
+ 
+on rightclick on stone button:
+    block behind target block is {@blok1}:
+        set {_targetx} to a random integer between {@xMin} and {@xMax}
+        set {_targetz} to a random integer between {@zMin} and {@zMax}
+        send "{@tag} {@danmsg}" to player
+        wait 1 seconds
+        apply {@efekt1} {@sila1} to the player for {@czas1} seconds
+        apply {@efekt2} {@sila2} to the player for {@czas2} seconds
+        apply {@efekt3} {@sila3} to the player for {@czas3} seconds
+        send "{@tag} {@infmsg}" to player
+        execute console command "/tppos %player% %{_targetx}% {@yMin} %{_targetz}%"
+        execute console command "/god %player% on"
+        wait 10 seconds
+        execute console command "/god %player% off"
+        stop
+        
+        
+on first join:
+    wait 0 seconds
+    set {_targetx} to a random integer between {@xMin} and {@xMax}
+    set {_targetz} to a random integer between {@zMin} and {@zMax}
+    apply {@efekt1} {@sila1} to the player for {@czas10} seconds
+    send "{@tag} {@infmsg1}" to player
+    execute console command "/tppos %player% %{_targetx}% {@yMin} %{_targetz}%"
+    execute console command "/god %player% on"
+    wait 30 seconds
+    execute console command "/god %player% off"
+    stop

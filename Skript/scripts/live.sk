@@ -1,0 +1,52 @@
+variables:
+	{live.czas.%player%} = 0
+
+command /live [<text>]:
+	permission: live.yt
+	permission message: &8» &cNie masz dostepu do &7[live.yt] &c!
+	trigger:
+		if arg 1 is set:
+			if {live.czas.%player%} is smaller than 1:
+				broadcast "&8» &e%player% &7Prowadzi teraz live! &7LINK: &6%arg 1%"
+				set {live.czas.%player%} to 30
+			else:
+				send "&8» &6Nastepne ogloszenie bedziesz mogl wyslac za: &c%{live.czas.%player%}% sekund."
+		else:
+			send "&8» &cPrawidlowe uzycie &7(/live LINK)"
+			
+every 1 second:
+	loop all players:
+		if {live.czas.%loop-player%} is bigger than 0:
+			remove 1 from {live.czas.%loop-player%}
+            
+            
+command /sety:
+	permission: set.block
+	trigger:
+		execute player command "/nanocraftingblocker"
+        
+command /slot [<number>]:
+	trigger:
+		if argument 1 is not set:
+			send "&cPoprawne uzycie: &e/slot <liczba>" to player
+			stop
+		execute player command "/motd sloty %arg%"
+        
+on join:
+	wait 0.1 second
+	loop 100 times:
+		send " "
+	send "              &e&l&m»&r&6* WITAMY &6*&e&l&m«"
+	send " "
+	send "       &8» &7Witaj &e%player% &7na serwerze &6EasyHC&7!"
+	send "       &8» &7IP: &e&lTIMEHC.PL"
+	send "       &8» &7Gracze: &a%number of all players%&8/&c500"
+	send " "
+	send "       &8&l→ &7www: &6www.timehc.pl"
+	send "       &8&l→ &7fanpage: &6fb.com/timehcpl"
+	send "       &8&l→ &7ts: &6ts.timehc.pl"
+	send " "
+	send "           &e&lZyczymy milej gry!"
+	send " "
+	send "              &e&l&m»&r&6* WITAMY &6*&e&l&m«"
+	stop

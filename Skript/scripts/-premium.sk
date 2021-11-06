@@ -1,0 +1,25 @@
+on mine of stone:
+ if player's gamemode is survival:
+
+  chance of 0.6%:
+   give 1 chest named "&e&n&lPREMIUMCASE" to the player
+   broadcast " &8» &7Gracz: &e%player% &7wykopal: &e&n&lPREMIUMCASE &8(&61szt.&8)"
+
+
+
+
+
+
+
+on right click with paper:
+	if name of player's tool is "&7Voucher na &9&lEVIP&7!":
+		console command "pex user %player% group set EVIP"
+		execute console command "stb all &fGracz: &6%player% &fuzyl voucher na: &9&lEVIP"
+		execute console command "tb all &9&lTWOJ&F&LSERWER"
+		remove 1 paper named "&7Voucher na &9&lEVIP&7!" from player
+
+
+
+
+
+

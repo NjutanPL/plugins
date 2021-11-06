@@ -1,0 +1,119 @@
+command /test [<text>]:
+	permission: *
+	trigger:
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		broadcast "&c%player%&7: &8%colored arg 1%"
+		stop
+command /bc [<text>]:
+	permission: *
+	permission message: Nie odnaleziono komendy!
+	trigger:
+		execute console command "tb all &8[&e&lTIMEHC.PL&8]"
+		execute console command "stb all &c%colored arg 1%"
+		stop
+command /say [<text>]:
+	permission: *
+	permission message: Nie odnaleziono komendy!
+	trigger:
+		execute console command "tb all &8[&e&lTIMEHC.PL&8]"
+		execute console command "stb all &c%colored arg 1%"
+		stop
+command /bcast [<text>]:
+	permission: *
+	permission message: Nie odnaleziono komendy!
+	trigger:
+		execute console command "tb all &8[&e&lTIMEHC.PL&8]"
+		execute console command "stb all &c%colored arg 1%"
+		stop
+
+variables:
+    antyspam.%player% = 0
+on chat:
+    if {antyspam.%player%} is 0:
+        if player has permission "blaze.spam":
+            stop
+        else:
+            if player has permission "blaze.spam.vip":
+                set {antyspam.%player%} to 5
+            else:
+                set {antyspam.%player%} to 10
+    else:
+        cancel event
+        send "&4Blad: &cMozesz napisac dopiero za %{antyspam.%player%}% s"
+
+command /chat [<text>] [<text>]:
+	trigger:
+		if player has permission "chat.*":
+			if arg 1 is empty:
+				send " &8� &7Poprawne uzycie: &6/chat <off/on/clear>" to player
+			else if arg 1 is "on":
+				if {chat.stan} is true:
+					send "&8(&E&LCHAT&8) &8- &fChat serwera jest juz wlaczony" to player
+					execute console command "tb msg %player% &c&lChat jest juz wlaczony!"
+					stop trigger
+				set {chat.stan} to true
+				broadcast "&8(&E&LCHAT&8) &8- &fChat serwera zostal wlaczony przez &6%player%"
+			else if arg 1 is "off":
+				if {chat.stan} is false:
+					send "&8(&E&LCHAT&8) &8- &fChat serwera jest juz wylaczony" to player
+					execute console command "tb msg %player% &c&lChat jest juz wylaczony!"
+					stop trigger
+				set {chat.stan} to false
+				loop 100 times:
+					broadcast " "
+				if "%arg 2%" is "<none>":
+					broadcast "&8(&E&LCHAT&8) &8- &fChat serwera zostal wylaczony przez &6%player%"
+				else:
+					broadcast "&8(&E&LCHAT&8) &8- &fChat serwera zostal wylaczony przez &6%player%&7, z powodu &6%arg 2%"
+			else if arg 1 is "c":
+				loop 100 times:
+					broadcast " "
+				broadcast "&8(&E&LCHAT&8) &8- &fChat serwera zostal wyczyszczony przez &6%player%"
+			else:
+				send "&8(&E&LCHAT&8) &8- &fPoprawne uzycie &6/chat <off/on/c>" to player
+			stop trigger
+		else:
+			send "&8(&E&LCHAT&8) &8- &fNie masz permissji do &c(chat.*)"
+			
+		
+			
+        
+command /uwaga [<text>]:
+	permission: *
+	permission message: Nie odnaleziono komendy!
+	trigger:
+		execute console command "tb all &4&lUWAGA"
+		execute console command "stb all &c%colored arg 1%"
+		stop
+        
+        
+command /onkit:
+	trigger:
+		if player has permission "kity.on":
+			execute console command "sk disable KIT.sk"
+			execute console command "tb all &7KITY ZOSTALY"
+			execute console command "stb all &a&lWLACZONE"
+			stop
+		else:
+			send "&c&lNIE MASZ DO TEGO UPRAWNIEN!"
+        
+        
+command /offkit:
+	trigger:
+		if player has permission "kity.off":
+			execute console command "sk enable KIT.sk"
+			execute console command "tb all &7KITY ZOSTALY"
+			execute console command "stb all &c&lWYLACZONE"
+			stop
+		else:
+			send "&c&lNIE MASZ DO TEGO UPRAWNIEN!"
+            
+            

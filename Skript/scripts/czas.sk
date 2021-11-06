@@ -1,0 +1,128 @@
+options:
+	tag:&e&lTIMEHC.PL &8»
+	tag2:&e&lTIMEHC.PL
+
+command /list [<text>]:
+	trigger:
+		send "&aGraczy online: &e%number of all players%&a/&e500"
+        
+command /online [<text>]:
+	trigger:
+		send "&aGraczy online: &e%number of all players%&a/&e500"
+        
+        
+        
+on join:
+	if {%player%::tecza} is not set:
+		set {%player%::tecza} to false
+
+on chat:
+	if {%player%::tecza} is true:
+		set {_n} to "%player's name%"
+		set {_l} to length of {_n}
+		set {_s} to ""
+		loop {_l} times:
+			set {_i} to {_l} - (loop-number)
+			set {_i} to {_i} + 1
+			set {_k::%{_i}%} to last character of {_n}
+			set {_n} to {_i}-1 first characters of {_n}
+		loop {_l} times:
+			set {_r} to "&a" or "&b" or "&c" or "&d" or "&e" or "&3" or "&5" or "&6" or "&9"
+			set {_s::%loop-number%} to colored "%{_r}%%{_k::%loop-number%}%"
+			set {_s} to "%{_s}%%{_s::%loop-number%}%"
+		set {_d} to "%player's display name%"
+		replace all "%player's name%" with {_s} in {_d}
+		set player's display name to {_d}		
+command /teczowy:
+	trigger:
+		if player has permission "teczowy.nick":
+			if {%player%::tecza} is true:
+				set {%player%::tecza} to false
+				send "&8• &cWylaczyles &7tryb &aT&bE&CC&CZ&DO&EW&3E&5G&6O &9N&FI&AC&1K&DU&C!"
+			else:
+				set {%player%::tecza} to true
+				send "&8• &aWlaczyles &7tryb &aT&bE&CC&CZ&DO&EW&3E&5G&6O &9N&FI&AC&1K&DU&C!"
+		else:
+			send "{@perm}"
+			stop
+			stop
+Variables:
+	{teczowy} = true
+command /opcjeteczy [<text="brak">] [<text>]:
+	permission: blaze.kits
+	permission message: {@perm}
+	trigger:
+		if arg 1 is not "on" or "off":
+			send player title "&4Bledny argument!" for 5 seconds
+			send "&8» &7Poprawne uzycie: &8/opcjeteczy [on/off]" 
+		if arg 1 is "on":
+			set {teczowy} to true
+			send "&8» &7Teczowy nick zostal &awlaczony &7przez &a%player%" to all ops
+			send "&8» &7Teczowy nick zostal: &awlaczony!"
+		if arg 1 is "off":
+			set {teczowy} to false
+			send "&8» &7Teczowy nick zostal &awylaczony &7przez &a%player%" to all ops
+			send "&8» &7Teczowy nick zostal: &awylaczony!"
+On command:
+	If command is "teczowy":
+		If {teczowy} is false:
+			Cancel event
+			Send "&4Blad: &cTeczowy nick jest wylaczony!"
+		stop
+            
+            
+            
+command /name [<text>]:
+    permission: blaze.itemname
+    permission message: {@perm}
+    aliases: itemname
+    trigger:
+        if arg 1 is set:
+            set name of player's tool to "&8&l• &7&l%colored arg% &8&l•"
+            send "&8» &7Zmieniono nazwe na &8&l• &7&l%colored arg% &8&l•"
+        if arg 1 is not set:
+            send player title "&4Bledny argument!" for 5 seconds
+            send "&8» &7Poprawne uzycie: &8/itemname [tresc]" to player
+command /lore [<text>]:
+    permission: blaze.itemlore
+    permission message: {@perm}
+    aliases: itemlore
+    trigger:
+        if arg 1 is set:
+            set lore of player's tool to "&8&l→ &7&l%colored arg%"
+            send "&8» &7Zmieniono opis na &8&l→ &7&l%colored arg%"
+        if arg 1 is not set:
+            send player title "&4Bledny argument!" for 5 seconds
+            send "&8» &7Poprawne uzycie: &8/itemlore [tresc]" to player
+            stop
+            
+            
+            
+            
+            
+command /skull [<offline player>]:
+	aliases: glowa, eskull
+	permission: blaze.skull
+	permission message: {@perm}
+	trigger:
+		if argument 1 is not set:
+			send  player title "&4Bledny argument!" with subtitle "" for 4 seconds
+			send "&8» &7Poprawne uzycie: &8/skull [gracz]"
+		if argument 1 is set:
+			send player title "&8&l• &7&lSKULL &8&l•" with subtitle "&8» &7Glowa: &a%arg 1%" for 4 seconds
+			send "&8» &7Pomyslnie przywolales glowe gracza &a%arg 1%"
+			give argument's skull to player
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
